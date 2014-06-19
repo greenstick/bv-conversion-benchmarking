@@ -1,0 +1,906 @@
+/*
+Fonts
+*/
+
+@font-face {
+    font-family: 'Gibson-SemiBold';
+    src:url('../fonts/Gibson-SemiBold.eot'); /* IE9 Compat Modes */
+    src:url('../fonts/Gibson-SemiBold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('../fonts/Gibson-SemiBold.woff') format('woff'), /* Modern Browsers */
+        url('../fonts/Gibson-SemiBold.ttf')  format('truetype'), /* Safari, Android, iOS */
+        url('../fonts/Gibson-SemiBold.svg#Gibson-SemiBold') format('svg'); /* Legacy iOS */
+    font-style: normal;
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'Gibson-Light';
+    src:url('../fonts/Gibson-Light.eot'); /* IE9 Compat Modes */
+    src:url('../fonts/Gibson-Light.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('../fonts/Gibson-Light.woff') format('woff'), /* Modern Browsers */
+        url('../fonts/Gibson-Light.ttf')  format('truetype'), /* Safari, Android, iOS */
+        url('../fonts/Gibson-Light.svg#Gibson-Light') format('svg'); /* Legacy iOS */
+    font-style: normal;
+    font-weight: 200;
+}
+
+@font-face {
+    font-family: 'Gibson-Italic';
+    src:url('../fonts/Gibson-Italic.eot'); /* IE9 Compat Modes */
+    src:url('../fonts/Gibson-Italic.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('../fonts/Gibson-Italic.woff') format('woff'), /* Modern Browsers */
+        url('../fonts/Gibson-Italic.ttf')  format('truetype'), /* Safari, Android, iOS */
+        url('../fonts/Gibson-Italic.svg#Gibson-Italic') format('svg'); /* Legacy iOS */
+    font-style: italic;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Gibson-Regular';
+    src:url('../fonts/Gibson-Regular.eot'); /* IE9 Compat Modes */
+    src:url('../fonts/Gibson-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('../fonts/Gibson-Regular.woff') format('woff'), /* Modern Browsers */
+        url('../fonts/Gibson-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+        url('../fonts/Gibson-Regular.svg#Gibson-Regular') format('svg'); /* Legacy iOS */
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'ForalPro-Bold';
+    src:url('../fonts/ForalPro-Bold.eot'); /* IE9 Compat Modes */
+    src:url('../fonts/ForalPro-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('../fonts/ForalPro-Bold.woff') format('woff'), /* Modern Browsers */
+        url('../fonts/ForalPro-Bold.ttf')  format('truetype'), /* Safari, Android, iOS */
+        url('../fonts/ForalPro-Bold.svg#ForalPro-Bold') format('svg'); /* Legacy iOS */
+    font-style: normal;
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: 'ForalPro-Regular';
+    src:url('../fonts/ForalPro-Regular.eot'); /* IE9 Compat Modes */
+    src:url('../fonts/ForalPro-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('../fonts/ForalPro-Regular.woff') format('woff'), /* Modern Browsers */
+        url('../fonts/ForalPro-Regular.ttf')  format('truetype'), /* Safari, Android, iOS */
+        url('../fonts/ForalPro-Regular.svg#ForalPro-Regular') format('svg'); /* Legacy iOS */
+    font-style: normal;
+    font-weight: 400;
+}
+
+/*
+General Design
+*/
+
+.bold {
+    font-size: 13px;
+    font-family: Gibson-Regular;
+}
+.indent-1 {
+    margin-left: 20px;
+}
+.indent-2 {
+    margin-left: 40px;
+}
+.indent-3 {
+    margin-left: 60px;
+}
+.purple {
+    color: #AB5787;
+}
+.orange {
+    color: #ED8128;
+}
+.teal {
+    color: #004E5F;
+}
+.mint {
+    color: #00B69E;
+}
+.black {
+    color: #282728;
+}
+.cream {
+    color: #F0F1D3;
+}
+.purple-bg {
+    background-color: #AB5787;
+}
+.orange-bg {
+    background-color: #ED8128;
+}
+.teal-bg {
+    background-color: #004E5F;
+}
+.mint-bg {
+    background-color: #00B69E;
+}
+.black-bg {
+    background-color: #282728;
+}
+.cream-bg {
+    background-color: #F0F1D3;
+}
+:focus {
+    outline: none;
+}
+ul {
+    -webkit-padding-start: 0px;
+}
+
+/*
+Containers
+*/
+
+#interactiveWrapper {
+    position: relative;
+    width: 800px;
+    margin: 0 auto;
+}
+#header-bar {
+    width: 800px;
+    height: 60px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#header-bar .top, .bottom {
+    width: 800px;
+    height: 30px;
+    position: absolute;
+    left: 0;
+}
+#header-bar .top {
+    top: 0;
+    background-color: #004E5F;
+} 
+#header-bar .bottom {
+    top: 30px;
+    background-color: #003D4C;
+} 
+#content {
+    position: absolute;
+    left: 0;
+    top: 60px;
+    width: 800px;
+}
+
+/*
+Screen One
+*/
+
+#screen-1 .header {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    height: 192px;
+}
+#screen-1 .header .titleText {
+    font-family: "ForalPro-Bold";
+    position: absolute;
+    font-size: 33px;
+    top: 80px;
+    left: 195px;
+    text-align: center;
+    color: #004E5F;
+    text-transform: uppercase;
+}
+#screen-1 .header .s1-header-icon {
+    height: 80px;
+}
+#screen-1 .header .break {
+    position: absolute;
+    top: 152px;
+    left: 0px;
+    width: 800px;
+    height: 24px;
+    background: url('../img/s1-header.png') 0 24px;
+}
+#screen-1 .quickFacts {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 428px;
+    height: 272px;
+    margin: 0 auto;
+    font-family: 'Gibson-Light';
+    font-size: 12px;
+    color: rgba(0, 182, 158, 1);
+    line-height: 16px;
+}
+#screen-1 .quickFacts .subhead {
+    font-size: 13px;
+    font-family: Gibson-Regular;
+    color: #00b69e;
+}
+#screen-1 .data {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 800px;
+    height: 300px;
+}
+#screen-1 .data .icons {
+    width: 800px;
+    height: 300px;
+}
+#screen-1 .data .loading {
+    position: absolute;
+    top: 104px;
+    left: 376px;
+    width: 280px;
+    height: 40px;
+}
+#screen-1 .data .loading .loader {
+    position: absolute;
+    top: 8px;
+    left: 0px;
+}
+#screen-1 .data .loading .loader .measure {
+    width: 244px;
+    height: 20px;
+    border-left: 2px solid;
+    border-right: 2px solid;
+    border-color: #00B69E;
+}
+#screen-1 .data .loading .loader .measure .measure-line {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 244px;
+    height: 9px;
+    border-bottom: 1px solid #00B69E;
+}
+#screen-1 .data .loading .loader .rectangle{
+    position: absolute;
+    top: 0px;
+    left: 4px;
+    width: 0px;
+    height: 17px;
+    z-index: 10;
+    font-family: 'ForalPro-Bold';
+    padding: 3px 0 0 4px;
+}
+#screen-1 .data .datapoints {
+    position: absolute;
+    top: 0px;
+    left: 378px;
+    width: 422px;
+    height: 228px;
+    font-family: 'Gibson-SemiBold';
+    display: none;
+}
+#screen-1 .data .datapoints .datapoint {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 400px;
+    height: 60px;
+    margin: 16px 0 0 0;
+}
+#screen-1 .data .datapoints .datapoint .value {
+    position: relative;
+    height: 40px;
+    font-size: 36px;
+}
+#screen-1 .data .datapoints .datapoint .metric {
+    position: relative;
+    height: 20px;
+    font-size: 13px;
+}
+
+/*
+Screen One Drop Downs
+*/
+
+#selections {
+    position: relative;
+    width: 800px;
+    height: 180px;
+    float: none;
+}
+#selections .verticals {
+    left: 125px;
+    height: 500px;
+}
+#selections .industries {
+    position: relative;
+    left: 425px;
+    height: auto;    
+}
+#selections .selectionsFooter {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 800px;
+    height: 20px;
+}
+#selections .selectionsFooter .vLine {
+    position: relative;
+    top: -3px;
+    width: 212px;
+    margin: 0 20px;
+    display: inline-block;
+    border-bottom: 1px solid #00AB8E;
+}
+#selections .selectionsFooter .mint {
+    font-family: 'Gibson-Light';
+    font-size: 12px;
+    margin: 0px 8px;
+}
+#verticalSelect {
+    position: absolute;
+    top: 24px;
+    left: 125px;
+}
+#industrySelect {
+    position: absolute;
+    top: 24px;
+    right: 125px;
+}
+.dropdown {
+    width: 250px;
+    background-color: #FFFFFF;
+    font-size: 0.8em;
+    font-weight: bold;
+    font-family: ForalPro-Bold;
+    border: 2px solid #00AB8E;
+    border-top: none;
+}
+.dropdown.inactive {
+    border-color: #999999;
+}
+.dropdown .ddSelected {
+    position: relative;
+    height: 20px;
+    width: 250px;
+    padding: 4px 0 0 0;
+    cursor: pointer;
+    display: block;
+    text-align: center;
+    color: #004E5F;
+    background-color: #FFFFFF;
+    border: none;
+}
+.dropdown .ddSelected .arrow {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 20px; 
+    height: 20px; 
+    background: url('../img/dd-arrows.png') 0 -20px no-repeat;
+    -webkit-transition: all 0.5s linear;
+    -moz-transition: all 0.5s linear;
+    -ms-transition: all 0.5s linear;
+    -o-transition: all 0.5s linear;
+    transition: all 0.5s linear;
+}
+.dropdown.inactive .ddSelected {
+    color: #999999;
+    background-color: #CCCCCC;
+    cursor: default;
+}
+.dropdown .ddSelected .arrow.selected {
+    -webkit-transform: rotate(-90deg);
+    -moz-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    transform: rotate(-90deg);
+}
+.dropdown.inactive .ddSelected .arrow {
+    display: none;
+}
+.dropdown.hover .ddSelected, .dropdown.active .ddSelected {
+    height: 20px;
+    color: #00AB8E;
+    background-color: #FFFFFF;
+}
+.dropdown.inactive.hover .ddSelected{
+    height: 20px;
+    color: #999999;
+    background-color: #CCCCCC;
+    border-color: #999999;
+}
+.dropdown .ddList {
+    height: 0px;
+    max-height: 0px;
+    min-height: 0px;
+    width: 250px;
+    color: #00AB8E;
+    background-color: #FFFFFF;
+    overflow: auto;
+    overflow-x: hidden !important;
+    -webkit-transition: all 0.3s linear;
+    -moz-transition: all 0.3s linear;
+    -ms-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+}
+.dropdown.hover .ddList {
+    max-height: 102px;
+    min-height: 0px;
+    height: auto;
+}
+.dropdown.inactive.hover .ddList {
+    height: 0px;
+    max-height: 0px;
+    min-height: 0px;
+}
+.dropdown .ddList .ddOption{
+    width: 250px;
+    height: 16px;
+    padding: 4px 0 0 0;
+    cursor: pointer;
+    display: block;
+    text-align: center;
+}
+.dropdown .ddList .ddOption:hover {
+    color: #F0F1D3;
+    background-color: #004E5F;
+}
+.dropdown .ddList .ddOption.active {
+    color: #00AB8E;
+    background-color: #FFFFFF;
+}
+.dropdown .ddList .ddOption.active:hover {
+    color: #00AB8E;
+    background-color: #FFFFFF;
+}
+
+/*
+Screen Two
+*/
+
+#screen-2 {
+    background-color: #E8EEEF;
+    height: 1000px;
+}
+#footer {
+    float: left;
+    font-family: 'Gibson-SemiBold';
+    margin: 0 0 30px 0;
+}
+#footer .top-bar {
+    width: 800px;
+    background: url('../img/footer-top.png') no-repeat;
+    height: 37px;
+    margin-top: -5px;
+}
+#footer .arrow {
+    width: 262px;
+    height: 26px;
+    display: block;
+}
+#footer .arrow.small {
+    width: 141px;
+}
+#footer .arrow.left {
+    float: right;
+    background: url('../img/footer-sprite.png') no-repeat 0 0;
+}
+#footer .arrow.left.small {
+    background: url('../img/footer-sprite.png') no-repeat 0 -52px;
+}
+#footer .arrow.right {
+    float: left;
+    background: url('../img/footer-sprite.png') no-repeat 0 -26px;
+}
+#footer .arrow.right.small {
+    background: url('../img/footer-sprite.png') no-repeat 0 -78px;
+}
+#bottom-buttons {
+     display: inline-block; 
+     width: 100%; 
+}
+#sign-up, #contact-us, #start-over {
+    display: block;
+    float: left;
+    width: 100%;
+    height: 26px;
+    line-height: 23px;
+    text-align: center;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    letter-spacing: 2px;
+    background-image: url('../img/footer-sprite.png');
+    background-repeat: no-repeat;
+}
+#contact-us {
+     background-repeat: repeat-x; 
+}
+#contact-us-sub {
+    font-size: 11px;
+    color: #4F5556;
+    text-align: center;
+    height: 40px;
+}
+#sign-up {
+    background-position: 0 -156px;      
+}
+#contact-us {
+    background-position: 0 -130px;
+}
+#start-over{
+    background-position: 0 -182px;
+}
+
+/*
+960
+*/
+
+/*
+    Variable Grid System.
+    Learn more ~ http://www.spry-soft.com/grids/
+    Based on 960 Grid System - http://960.gs/
+
+    Licensed under GPL and MIT.
+*/
+
+/*
+  Forces backgrounds to span full width,
+  even if there is horizontal scrolling.
+  Increase this if your layout is wider.
+
+  Note: IE6 works fine without this fix.
+*/
+
+body {
+  min-width: 792px;
+}
+
+/* Containers
+----------------------------------------------------------------------------------------------------*/
+.container_12 {
+    margin-left: auto;
+    margin-right: auto;
+    width: 792px;
+}
+
+/* Grid >> Global
+----------------------------------------------------------------------------------------------------*/
+
+
+.grid_1,
+.grid_2,
+.grid_3,
+.grid_4,
+.grid_5,
+.grid_6,
+.grid_7,
+.grid_8,
+.grid_9,
+.grid_10,
+.grid_11,
+.grid_12 {
+    display:inline;
+    float: left;
+    position: relative;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+
+
+.push_1, .pull_1,
+.push_2, .pull_2,
+.push_3, .pull_3,
+.push_4, .pull_4,
+.push_5, .pull_5,
+.push_6, .pull_6,
+.push_7, .pull_7,
+.push_8, .pull_8,
+.push_9, .pull_9,
+.push_10, .pull_10,
+.push_11, .pull_11,
+.push_12, .pull_12 {
+    position:relative;
+}
+
+
+/* Grid >> Children (Alpha ~ First, Omega ~ Last)
+----------------------------------------------------------------------------------------------------*/
+
+.alpha {
+    margin-left: 0;
+}
+
+.omega {
+    margin-right: 0;
+}
+
+/* Grid >> 12 Columns
+----------------------------------------------------------------------------------------------------*/
+
+
+.container_12 .grid_1 {
+    width:66px;
+}
+
+.container_12 .grid_2 {
+    width:132px;
+}
+
+.container_12 .grid_3 {
+    width:198px;
+}
+
+.container_12 .grid_4 {
+    width:264px;
+}
+
+.container_12 .grid_5 {
+    width:330px;
+}
+
+.container_12 .grid_6 {
+    width:396px;
+}
+
+.container_12 .grid_7 {
+    width:462px;
+}
+
+.container_12 .grid_8 {
+    width:528px;
+}
+
+.container_12 .grid_9 {
+    width:594px;
+}
+
+.container_12 .grid_10 {
+    width:660px;
+}
+
+.container_12 .grid_11 {
+    width:726px;
+}
+
+.container_12 .grid_12 {
+    width:792px;
+}
+
+
+
+
+/* Prefix Extra Space >> 12 Columns
+----------------------------------------------------------------------------------------------------*/
+
+
+.container_12 .prefix_1 {
+    padding-left:66px;
+}
+
+.container_12 .prefix_2 {
+    padding-left:132px;
+}
+
+.container_12 .prefix_3 {
+    padding-left:198px;
+}
+
+.container_12 .prefix_4 {
+    padding-left:264px;
+}
+
+.container_12 .prefix_5 {
+    padding-left:330px;
+}
+
+.container_12 .prefix_6 {
+    padding-left:396px;
+}
+
+.container_12 .prefix_7 {
+    padding-left:462px;
+}
+
+.container_12 .prefix_8 {
+    padding-left:528px;
+}
+
+.container_12 .prefix_9 {
+    padding-left:594px;
+}
+
+.container_12 .prefix_10 {
+    padding-left:660px;
+}
+
+.container_12 .prefix_11 {
+    padding-left:726px;
+}
+
+
+
+/* Suffix Extra Space >> 12 Columns
+----------------------------------------------------------------------------------------------------*/
+
+
+.container_12 .suffix_1 {
+    padding-right:66px;
+}
+
+.container_12 .suffix_2 {
+    padding-right:132px;
+}
+
+.container_12 .suffix_3 {
+    padding-right:198px;
+}
+
+.container_12 .suffix_4 {
+    padding-right:264px;
+}
+
+.container_12 .suffix_5 {
+    padding-right:330px;
+}
+
+.container_12 .suffix_6 {
+    padding-right:396px;
+}
+
+.container_12 .suffix_7 {
+    padding-right:462px;
+}
+
+.container_12 .suffix_8 {
+    padding-right:528px;
+}
+
+.container_12 .suffix_9 {
+    padding-right:594px;
+}
+
+.container_12 .suffix_10 {
+    padding-right:660px;
+}
+
+.container_12 .suffix_11 {
+    padding-right:726px;
+}
+
+
+
+/* Push Space >> 12 Columns
+----------------------------------------------------------------------------------------------------*/
+
+
+.container_12 .push_1 {
+    left:66px;
+}
+
+.container_12 .push_2 {
+    left:132px;
+}
+
+.container_12 .push_3 {
+    left:198px;
+}
+
+.container_12 .push_4 {
+    left:264px;
+}
+
+.container_12 .push_5 {
+    left:330px;
+}
+
+.container_12 .push_6 {
+    left:396px;
+}
+
+.container_12 .push_7 {
+    left:462px;
+}
+
+.container_12 .push_8 {
+    left:528px;
+}
+
+.container_12 .push_9 {
+    left:594px;
+}
+
+.container_12 .push_10 {
+    left:660px;
+}
+
+.container_12 .push_11 {
+    left:726px;
+}
+
+
+
+/* Pull Space >> 12 Columns
+----------------------------------------------------------------------------------------------------*/
+
+
+.container_12 .pull_1 {
+    left:-66px;
+}
+
+.container_12 .pull_2 {
+    left:-132px;
+}
+
+.container_12 .pull_3 {
+    left:-198px;
+}
+
+.container_12 .pull_4 {
+    left:-264px;
+}
+
+.container_12 .pull_5 {
+    left:-330px;
+}
+
+.container_12 .pull_6 {
+    left:-396px;
+}
+
+.container_12 .pull_7 {
+    left:-462px;
+}
+
+.container_12 .pull_8 {
+    left:-528px;
+}
+
+.container_12 .pull_9 {
+    left:-594px;
+}
+
+.container_12 .pull_10 {
+    left:-660px;
+}
+
+.container_12 .pull_11 {
+    left:-726px;
+}
+
+/* Clear Floated Elements
+----------------------------------------------------------------------------------------------------*/
+
+/* http://sonspring.com/journal/clearing-floats */
+
+.clear {
+  clear: both;
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+/* http://www.yuiblog.com/blog/2010/09/27/clearfix-reloaded-overflowhidden-demystified */
+
+.clearfix:before,
+.clearfix:after {
+  content: '\0020';
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+/*
+  The following zoom:1 rule is specifically for IE6 + IE7.
+  Move to separate stylesheet if invalid CSS is a problem.
+*/
+
+.clearfix {
+  zoom: 1;
+}
+
+
+
+
