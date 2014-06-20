@@ -95,7 +95,19 @@ General Design
     color: #004E5F;
 }
 .mint {
-    color: #00B69E;
+    color: #7ED9CD;
+}
+.lime {
+    color: #C0CA56;
+}
+.gold {
+    color: #FDB814;
+}
+.aqua {
+    color: #67C9CF;
+}
+.burgundy {
+    color: #9A1B2E;
 }
 .black {
     color: #282728;
@@ -113,7 +125,19 @@ General Design
     background-color: #004E5F;
 }
 .mint-bg {
-    background-color: #00B69E;
+    background-color: #7ED9CD;
+}
+.lime-bg {
+    background-color: #C0CA56;
+}
+.gold-bg {
+    background-color: #FDB814;
+}
+.aqua-bg {
+    background-color: #67C9CF;
+}
+.burgundy-bg {
+    background-color: #9A1B2E;
 }
 .black-bg {
     background-color: #282728;
@@ -452,17 +476,322 @@ Screen Two
 */
 
 #screen-2 {
-    background-color: #E8EEEF;
     height: 1000px;
 }
-#footer {
-    float: left;
+#screen-2 .header {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 800px;
+    height: 420px;
+    background-color: #FFFFFF;
+}
+#screen-2 .header .head {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 800px;
+    height: 36px;
+    margin-top: 16px;
+    font-family: "ForalPro-Bold";
+    font-size: 36px;
+    text-align: center;
+}
+#screen-2 .header .head-overlay {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: auto;
+    width: 800px;
+    margin: 128px 0 24px 0;
+    background-color: transparent;
+}
+#screen-2 .header .head-overlay .selected-header {
+    position: relative;
+    top: 0px;
+    left: 142px;
+    width: 634px;
+    height: 36px;
+    font-family: "ForalPro-Bold";
+    font-size: 25px;
+    text-align: left;
+}
+#screen-2 .header .head-overlay .selected-header .books {
+    width: auto;
+}
+#screen-2 .header .head-overlay .selected-header .bookend {
+    position: absolute;
+    top: 2px;
+    left: 0px;
+    width: 100px;
+    height: 20px;
+}
+#screen-2 .header .head-overlay .selected-header .bookend .vert {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 20px;
+    width: 3px;
+    background-color: #00B69E;
+}
+#screen-2 .header .head-overlay .selected-header .bookend .stem {
+    position: absolute;
+    left: 3px;
+    top: 9px;
+    height: 2px;
+    width: 100%;
+    background-color: #00B69E;
+}
+#screen-2 .header .head-overlay .general-header {
+    position: relative;
+    top: 0px;
+    left: 72px;
+    width: auto;
+    height: 36px;
     font-family: 'Gibson-SemiBold';
-    margin: 0 0 30px 0;
+    font-size: 21px;
+    letter-spacing: 1px;
+}
+#screen-2 .header .head-overlay .dynamic-body {
+    position: relative;
+    top: 0px;
+    left: 72px;
+    width: 704px;
+    height: auto;
+    font-family: 'Gibson-Regular';
+    font-size: 15px;
+    letter-spacing: 1px;
+    line-height: 28px;
+}
+#screen-2 .header .head-overlay .datapoints {
+    position: relative;
+    top: 20px;
+    left: 22px;
+    width: 756px;
+    height: 120px;
+    margin-top: 4px;
+    font-size: 0px;
+}
+#screen-2 .header .head-overlay .datapoints .datapoint {
+    float: left;
+    width: 148px;
+    height: 104px;
+    border-right: 2px solid  #E8EEEF;
+}
+#screen-2 .header .head-overlay .datapoints .datapoint:last-child {
+    border: none;
+}
+#screen-2 .header .head-overlay .datapoints .datapoint .numerator {
+    width: 148px;
+    height: 40px;
+    margin: 8px 0 8px 0;
+    text-align: center;
+    font-family: 'Gibson-SemiBold';
+    font-size: 32px;
+}
+#screen-2 .header .head-overlay .datapoints .datapoint .context {
+    width: 148px;
+    height: 40px;
+    margin: 0 0 8px 0;
+    font-family: 'Gibson-Regular';
+    font-size: 12px;
+    letter-spacing: 1px;
+    line-height: 14px;
+    text-align: center;
+}
+#screen-2 .modules {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 800px;
+    height: auto;
+}
+#screen-2 .modules .dataModule {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 800px;
+    background-color: #E8EEEF;
+}
+#screen-2 .modules .dataModule .overlay .head {
+    position: relative;
+    top: 0px;
+    left: 35px;
+    width: 765px;
+    height: 38px;
+    background-color: #FFFFFF;
+    border-bottom: 2px solid #67C9CF;
+    border-top: 4px solid #FDB814;
+}
+#screen-2 .modules .dataModule .overlay .head .icon-container {
+    position: relative;
+    top: -2px;
+    left: 0px;
+    width: 72px;
+    height: 40px;
+    display: inline-block;
+    background-color: #FDB814;
+    border-radius: 0px 12px 12px 0;
+}
+#screen-2 .modules .dataModule .overlay .head .icon-container .icon {
+    position: absolute;
+    top: 2px;
+    left: -44px;
+    width: 120px;
+    height: 48px;
+}
+#screen-2 .modules .dataModule .overlay .head .bookshelf {
+    position: absolute;
+    top: 0px;
+    left: 76px;
+    width: 690px;
+    height: 40px;
+}
+#screen-2 .modules .dataModule .overlay .head .bookshelf .books {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: auto;
+    height: 32px;
+    padding: 8px 0 0 8px;
+    display: inline-block;
+    font-family: 'ForalPro-Bold';
+    font-size: 22px;
+    letter-spacing: 1px;
+}
+#screen-2 .modules .dataModule .overlay .head .bookshelf .bookend {
+    position: absolute;
+    top: 9px;
+    left: 0px;
+    width: 100px;
+    height: 20px;
+}
+#screen-2 .modules .dataModule .overlay .head .bookshelf .bookend .vert {
+    position: absolute;
+    left: 0px;
+    top: 2px;
+    height: 16px;
+    width: 3px;
+    background-color: #00B69E;
+}
+#screen-2 .modules .dataModule .overlay .head .bookshelf .bookend .stem {
+    position: absolute;
+    left: 0px;
+    top: 9px;
+    height: 2px;
+    width: 100%;
+    background-color: #00B69E;
+}
+
+/*
+Ratings & Reviews Module
+*/
+
+#ratingsReviews {
+    height: 550px;
+}
+#ratingsReviews .background {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background: url('../img/ratings-reviews-bg.png') no-repeat 0px 0px;
+}
+#ratingsReviews .overlay {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+}
+#ratingsReviews .overlay .head .icon-container .icon {
+    position: absolute;
+    top: -8px !important;
+    left: -44px !important;
+}
+
+/*
+Questions & Answers Module
+*/
+
+#questionsAnswers {
+    height: 300px;
+}
+#questionsAnswers .background {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background: url('../img/questions-answers-bg.png') no-repeat 0px -48px;
+}
+#questionAnswers .overlay {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+}
+
+/*
+Average All Module
+*/
+
+#averageAll {
+    height: 260px;
+}
+#averageAll .background {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background: url('../img/average-all-bg.png') no-repeat 0px -62px;
+}
+#averageAll .overlay {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+}
+
+/*
+Ratings Distributions Module
+*/
+
+#ratingsDistribution {
+    height: 345px;
+}
+#ratingsDistribution .background {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background: url('../img/ratings-distribution-bg.png') no-repeat 0px 0px;
+}
+#ratingsDistribution .overlay {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+}
+
+/*
+Screen Two Footer
+*/
+
+#footer {
+    position: relative;
+    top: 0px;
+    height: 182px;
+    font-family: 'Gibson-SemiBold';
 }
 #footer .top-bar {
     width: 800px;
-    background: url('../img/footer-top.png') no-repeat;
     height: 37px;
     margin-top: -5px;
 }

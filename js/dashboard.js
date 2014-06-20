@@ -4,7 +4,39 @@
 General Utility Functions
 */
 
+	//Get String Width - Modifies String Prototype
+	getStringWidth  					= function (string, font) {
+		var o = $('<div>' + string + '</div>').css({'position': 'absolute', 'float': 'left', 'white-space': 'nowrap', 'visibility': 'hidden', 'font': font}).appendTo($('body')),
+			w = o.width();
+			o.remove();
+		return w;
+	};
 
+	//Check if Object is Empty
+	var isEmpty 					= function (obj) {
+		for (var i in obj) {
+			return false;
+		};
+		return true;
+	};
+
+	//Make Percentage
+	var percentify 					= function (val) {
+		return (val === null) ? null : ((val * 100) + "%");
+	};
+
+	//Formats numbers with commas
+	function commaNumbers (num) {
+		if (num === null) return null;
+	    var str = num.toString().split('.');
+	    if (str[0].length >= 4) {
+	        str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+	    }; 
+	    if (str[1] && str[1].length >= 5) {
+	        str[1] = str[1].replace(/(\d{3})/g, '$1 ');
+	    };
+	    return str.join('.');
+	};
 
 /*
 Interactive Dashboard
@@ -12,27 +44,40 @@ Interactive Dashboard
 
 	var Dashboard = function () {
 		var dash = this;
-			dash.subheader 			= '.subheader',
-			dash.jsonPath 			= 'js/data/interactive.json',
-			dash.vertical 			= null,
-			dash.industry 			= null,
-			dash.splash 			= {
-				aov					: '.splashAOV',
-				conversion 			: '.splashConversion',
-				rpv 				: '.splashRPV'
+			dash.subheader 					= '.subheader',
+			dash.jsonPath 					= 'js/data/interactive.json',
+			dash.vertical 					= null,
+			dash.industry 					= null,
+			dash.splash 					= {
+				aov							: '.splashAOV',
+				conversion 					: '.splashConversion',
+				rpv 						: '.splashRPV'
 			},
-			dash.dd 				= '#selections',
-			dash.ddVerticals 		= '#verticalSelect',	
-			dash.ddIndustries 		= '#industrySelect',
-			dash.filter 			= '.filter',
-			dash.ddArrow 			= '.arrow',
-			dash.screenOne 			= '#screen-1',
-			dash.screenTwo 			= '#screen-2',
-			dash.ddVertArray 		= ko.observableArray([]),
-			dash.ddInduArray 		= ko.observableArray([]),
-			dash.activeVertical 	= ko.observable("Verticals"),
-			dash.activeIndustry 	= ko.observable("Industries"),
-			dash.verticalOnly 		= ko.observable(true),
+			dash.dd 						= '#selections',
+			dash.ddVerticals 				= '#verticalSelect',	
+			dash.ddIndustries 				= '#industrySelect',
+			dash.filter 					= '.filter',
+			dash.ddArrow 					= '.arrow',
+			dash.screenOne 					= '#screen-1',
+			dash.screenTwo 					= '#screen-2',
+			dash.books 						= '.books',
+			dash.bookend 					= '.bookend',
+			dash.ddVertArray 				= ko.observableArray([]),
+			dash.ddInduArray 				= ko.observableArray([]),
+			dash.activeVertical 			= ko.observable("Verticals"),
+			dash.activeIndustry 			= ko.observable("Industries"),
+			dash.activeData 				= {},
+			dash.activeVerticalData 		= {},
+			dash.verticalOnly 				= ko.observable(true),
+			dash.headDataClients 			= ko.observable(null),
+			dash.headDataReviews 			= ko.observable(null),
+			dash.headDataQuestions 			= ko.observable(null),
+			dash.headDataAnswers 			= ko.observable(null),
+			dash.headDataPageviews 			= ko.observable(null),
+			dash.headDataClientsTotal 		= ko.observable(null),
+			dash.headDataReviewsTotal 		= ko.observable(null),
+			dash.headDataQuestionsTotal 	= ko.observable(null),
+			dash.headDataAnswersTotal 		= ko.observable(null),
 			dash.data;
 	};
 
@@ -112,7 +157,7 @@ Interactive Dashboard
 		$(e.currentTarget).removeClass('hover');
 	};
 
-	//Sets Verticals & Populates Industries Observable Array if Industries Exist
+	//Sets Vertical; If No Industries Sets Active Data Object Else Populates Industries Observable Array
 	Dashboard.prototype.selectVertical					= function (e) {
 		var dash = this, selectedVertical = e.currentTarget.value;
 			dash.activeVertical(selectedVertical || "Verticals");
@@ -120,8 +165,11 @@ Interactive Dashboard
 				if (v.name === selectedVertical) {
 					$.each(v, function (ky, vl) {
 						if (ky === 'industries') {
+							dash.activeVerticalData = v;
 							dash.ddInduArray([]);
-							if ($.isEmptyObject(vl)) {
+							if (isEmpty(vl)) {
+								dash.activeIndustry(selectedVertical);
+								dash.activeData = v;
 								dash.fadeScreens();
 							} else {
 								$.each(vl, function (key, value) {
@@ -134,30 +182,60 @@ Interactive Dashboard
 					});
 				};
 			});
-		$(dash.ddVerticals + ' ' + dash.ddArrow).addClass('selected');
+			$(dash.ddVerticals + ' ' + dash.ddArrow).addClass('selected');
 	};
 
+	//Set Industry (If Vertical Has Industries)
 	Dashboard.prototype.selectIndustry					= function (e) {
 		var dash = this, selectedIndustry = e.currentTarget.value;
 			dash.activeIndustry(selectedIndustry || "Industries");
 			$(dash.ddIndustries + ' ' + dash.ddArrow).addClass('selected');
+			for (var i = 0; i < dash.ddInduArray().length; i++) {
+				if (dash.ddInduArray()[i].name === dash.activeIndustry()) {
+					dash.activeData = dash.ddInduArray()[i];
+				};
+			};
 			dash.fadeScreens();
 	};
 
+	//Fade to Screen Two
 	Dashboard.prototype.fadeScreens						= function () {
 		var dash = this;
-		$(dash.screenOne).fadeOut(function () {
-			$(dash.screenTwo).fadeIn();
-		});
+			dash.setBookends();
+			dash.renderHead();
+			$(dash.screenOne).fadeOut(function () {
+				$('body').scrollTop(0);
+				$(dash.screenTwo).fadeIn();
+			});
 	};
-	Dashboard.prototype.renderResults					= function () {
+
+	//Set Bookend Lengths
+	Dashboard.prototype.setBookends						= function () {
+		var dash = this, books = $(dash.books), string = books.text();
+			$.each(books, function (k, v) {
+				var width 	= getStringWidth($(this).text(), '25px ForalPro-Bold'),
+					parentWidth = $(this).parent().width(),
+					bookend = $(this).siblings(dash.bookend);
+
+					bookend.css("left", width + 8);
+					bookend.width(parentWidth - 8 - width);
+			});
+	};
+
+	//Render Head Data
+	Dashboard.prototype.renderHead 						= function () {
 		var dash = this;
-		if (dash.verticalOnly() === true) {
-
-		} else {
-
-		};
+			dash.headDataClients(commaNumbers(dash.activeData.clients_included)),
+			dash.headDataReviews(commaNumbers(dash.activeData.total_submitted)),
+			dash.headDataQuestions(commaNumbers(dash.activeData.total_questions)),
+			dash.headDataAnswers(commaNumbers(dash.activeData.total_answers)),
+			dash.headDataPageviews(percentify(dash.activeData.ppv_with_reviews)),
+			dash.headDataClientsTotal(commaNumbers(dash.activeVerticalData.clients_included)),
+			dash.headDataReviewsTotal(commaNumbers(dash.activeVerticalData.total_submitted)),
+			dash.headDataQuestionsTotal(commaNumbers(dash.activeVerticalData.total_questions)),
+			dash.headDataAnswersTotal(commaNumbers(dash.activeVerticalData.total_answers));
 	};
+
 	Dashboard.prototype.renderIcons						= function () {
 
 	};
@@ -217,4 +295,4 @@ $(dashboard.dd).on("click", dashboard.ddIndustries + ' ' + dashboard.filter, fun
 	dashboard.selectIndustry(e);
 });
 
-}(jQuery, ko, d3))
+}(jQuery, ko))
