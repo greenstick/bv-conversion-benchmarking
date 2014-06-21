@@ -281,6 +281,9 @@
 							</g>
 						</svg>
 						<div class="head-overlay">
+							<!-- ko if: activeIcon() !== null -->
+							<img class="selected-icon" data-bind="attr: {src: 'img/icons/' + activeIcon() + '.svg'}">
+							<!-- /ko -->
 							<div class="selected-header">
 								<div class="books" data-bind="text: activeIndustry"></div>
 								<div class="bookend">
@@ -294,7 +297,7 @@
 							<div class="dynamic-body black">
 								Each month, more than 400 million people view and share authentic opinions, questions and
 								experiences about 20 million products on the Bazaarvoice network. For the <span data-bind="text: activeIndustry"></span>,
-								we saw the following across our network in the most recent quarter: 
+								industry we saw the following across our network in the most recent quarter: 
 							</div>
 							<div class="datapoints">
 								<!-- ko if: headDataClients() !== null -->
@@ -370,6 +373,59 @@
 										</div>
 									</div>
 								</div>
+								<div class="viz">
+									<div class="subhead">
+										<div class="bookend-static">
+											<div class="vert"></div>
+											<div class="stem"></div>
+										</div>
+										<div class="title aqua">PERCENTAGE LIFT FOR PRODUCT PAGES</div>
+										<div class="desc">
+											On average, Bazaarvoice <span data-bind="text: activeIndustry"></span>
+											clients see the following results for average order value, conversion,
+											and revenue per visit on product pages with Ratings &amp; Reviews.
+										</div>
+									</div>
+									<div class="barTotals">
+										<!-- ko if: rrAovIndustry() !== null -->
+										<div class="barTotal aov industry" data-bind="text: rrAovIndustryPercent"></div>
+										<!-- /ko -->
+										<div class="barTotal aov all" data-bind="text: rrAovAllPercent"></div>
+										<!-- ko if: rrConversionIndustry() !== null -->
+										<div class="barTotal conversion industry" data-bind="text: rrConversionIndustryPercent"></div>
+										<!-- /ko -->
+										<div class="barTotal conversion all" data-bind="text: rrConversionAllPercent"></div>
+										<!-- ko if: rrRpvIndustry() !== null -->
+										<div class="barTotal rpv industry" data-bind="text: rrRpvIndustryPercent"></div>
+										<!-- /ko -->
+										<div class="barTotal rpv all" data-bind="text: rrRpvAllPercent"></div>
+									</div>
+									<!-- ko if: showRRIndustryBars() === true -->
+									<div class="barLabelIndustry verticalText">
+										<div class="barLabel purple " data-bind="text: activeIndustry().toUpperCase()"></div>
+										<div class="barLabel orange " data-bind="text: activeIndustry().toUpperCase()"></div>
+										<div class="barLabel teal " data-bind="text: activeIndustry().toUpperCase()"></div>
+									</div>
+									<!-- /ko -->
+									<div class="barLabelAll verticalText">
+										<div class="barLabel mint ">ALL CLIENTS</div>
+										<div class="barLabel mint ">ALL CLIENTS</div>
+										<div class="barLabel mint ">ALL CLIENTS</div>
+									</div>
+									<div class="barTitles">
+										<div class="barTitle purple">AVERAGE ORDER VALUE</div>
+										<div class="barTitle orange">CONVERSION</div>
+										<div class="barTitle teal">REVENUE PER VISIT</div>
+									</div>
+									<div class="dataBars">
+										<div class="dataBar purple-bg" data-bind="attr: {style: 'height:' + rrAovIndustry() + 'px'}"></div>
+										<div class="dataBar orange-bg" data-bind="attr: {style: 'height:' + rrConversionIndustry() + 'px'}"></div>
+										<div class="dataBar teal-bg" data-bind="attr: {style: 'height:' + rrRpvIndustry() + 'px'}"></div>
+										<div class="dataBar mint-bg" data-bind="attr: {style: 'height:' + rrAovAll() + 'px'}"></div>
+										<div class="dataBar mint-bg" data-bind="attr: {style: 'height:' + rrConversionAll() + 'px'}"></div>
+										<div class="dataBar mint-bg" data-bind="attr: {style: 'height:' + rrRpvAll() + 'px'}"></div>
+									</div>
+								</div>
 							</div>
 						</div>
 						<div id="questionsAnswers" class="dataModule">
@@ -402,6 +458,30 @@
 										</div>
 									</div>
 								</div>
+								<div class="viz">
+									<div class="subhead">
+										<div class="bookend-static">
+											<div class="vert"></div>
+											<div class="stem"></div>
+										</div>
+										<div class="title aqua">PERCENTAGE LIFT FOR PRODUCT PAGES</div>
+										<div class="desc">
+											On average, Bazaarvoice <span data-bind="text: activeIndustry"></span>
+											clients see the following results on product pages with Question &amp;
+											Answers.
+										</div>
+									</div>
+									<div class="dataValues">
+										<div class="dataValue purple" data-bind="text: qaAovAll"></div>
+										<div class="dataValue orange" data-bind="text: qaConversionAll"></div>
+										<div class="dataValue teal" data-bind="text: qaRpvAll"></div>
+									</div>
+									<div class="dataTitles">
+										<div class="dataTitle purple">AVERAGE ORDER VALUE</div>
+										<div class="dataTitle orange">CONVERSION</div>
+										<div class="dataTitle teal">REVENUE PER VISIT</div>
+									</div>
+								</div>
 							</div>
 						</div>
 						<div id="averageAll" class="dataModule">
@@ -425,9 +505,30 @@
 										</div>
 									</div>
 								</div>
+								<div class="viz">
+									<div class="subhead">
+										<div class="desc">
+											We find that, on average, most reviews are positive. These numbers are
+											based on a 5-star scale comparing all Bazaarvoice <span data-bind="text: activeIndustry"></span>
+											clients.
+										</div>
+									</div>
+									<div class="dataTitles verticalText">
+										<div class="dataTitle gold" data-bind="text: activeIndustry().toUpperCase()"></div>
+										<div class="dataTitle mint">ALL CLIENTS</div>
+									</div>
+									<!-- ko if: activeIcon() !== null -->
+									<img class="selected-icon" data-bind="attr: {src: 'img/icons/' + activeIcon() + '-big.svg'}">
+									<!-- /ko -->
+									<div class="dataValues">
+										<div class="dataValue gold" data-bind="text: arIndustry"></div>
+										<div class="dataValue mint" data-bind="text: arAll"></div>
+									</div>
+								</div>
 							</div>
 						</div>
 						<div id="ratingsDistribution" class="dataModule">
+							<div class="yellow-line gold-bg"></div>
 							<div class="background"></div>
 							<div class="overlay">
 								<div class="head">
@@ -475,11 +576,36 @@
 										</div>
 									</div>
 								</div>
+								<div class="viz">
+									<div class="subhead">
+										<div class="desc">
+											Most ratings are 4 or 5 stars. The following rating distribution is among
+											Bazaarvoice <span data-bind="text: activeIndustry"></span> clients.
+										</div>
+									</div>
+									<div class="industryTitle verticalText gold" data-bind="text: activeIndustry().toUpperCase()"></div>
+									<div class="dataBars">
+										<div class="dataBar gold-bg" data-bind="attr: {style: 'width:' + rd5() + 'px'}"></div>
+										<div class="dataBar lime-bg" data-bind="attr: {style: 'width:' + rd4() + 'px'}"></div>
+										<div class="dataBar burgundy-bg" data-bind="attr: {style: 'width:' + rd3() + 'px'}"></div>
+										<div class="dataBar mint-bg" data-bind="attr: {style: 'width:' + rd2() + 'px'}"></div>
+										<div class="dataBar aqua-bg" data-bind="attr: {style: 'width:' + rd1() + 'px'}"></div>
+									</div>
+									<div class="dataValues">
+										<div class="dataValue" data-bind="text: rd5Text"></div>
+										<div class="dataValue" data-bind="text: rd4Text"></div>
+										<div class="dataValue" data-bind="text: rd3Text"></div>
+										<div class="dataValue" data-bind="text: rd2Text"></div>
+										<div class="dataValue" data-bind="text: rd1Text"></div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 					<div id="footer">
-						<div class="top-bar"></div>
+						<div class="top-bar">
+							<div class="yellow-line gold-bg"></div>
+						</div>
 						<div class="container_12" id="bottom-buttons">
 							<div class="grid_3">
 								<span class="left arrow small">&nbsp;</span>

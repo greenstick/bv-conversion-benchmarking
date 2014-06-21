@@ -104,7 +104,7 @@ General Design
     color: #FDB814;
 }
 .aqua {
-    color: #67C9CF;
+    color: #00B69E;
 }
 .burgundy {
     color: #9A1B2E;
@@ -134,7 +134,7 @@ General Design
     background-color: #FDB814;
 }
 .aqua-bg {
-    background-color: #67C9CF;
+    background-color: #00B69E;
 }
 .burgundy-bg {
     background-color: #9A1B2E;
@@ -151,6 +151,14 @@ General Design
 ul {
     -webkit-padding-start: 0px;
 }
+.verticalText {
+    -webkit-transform:rotate(-90deg);
+    -moz-transform:rotate(-90deg);
+    -ms-transform:rotate(-90deg);
+    -o-transform:rotate(-90deg);
+    transform:rotate(-90deg);
+}
+
 
 /*
 Containers
@@ -362,7 +370,7 @@ Screen One Drop Downs
     top: 24px;
     right: 125px;
 }
-.dropdown {
+#selections .dropdown {
     width: 250px;
     background-color: #FFFFFF;
     font-size: 0.8em;
@@ -371,10 +379,10 @@ Screen One Drop Downs
     border: 2px solid #00AB8E;
     border-top: none;
 }
-.dropdown.inactive {
+#selections .dropdown.inactive {
     border-color: #999999;
 }
-.dropdown .ddSelected {
+#selections .dropdown .ddSelected {
     position: relative;
     height: 20px;
     width: 250px;
@@ -386,7 +394,7 @@ Screen One Drop Downs
     background-color: #FFFFFF;
     border: none;
 }
-.dropdown .ddSelected .arrow {
+#selections .dropdown .ddSelected .arrow {
     position: absolute;
     top: 2px;
     right: 2px;
@@ -399,33 +407,33 @@ Screen One Drop Downs
     -o-transition: all 0.5s linear;
     transition: all 0.5s linear;
 }
-.dropdown.inactive .ddSelected {
+#selections .dropdown.inactive .ddSelected {
     color: #999999;
     background-color: #CCCCCC;
     cursor: default;
 }
-.dropdown .ddSelected .arrow.selected {
+#selections .dropdown .ddSelected .arrow.selected {
     -webkit-transform: rotate(-90deg);
     -moz-transform: rotate(-90deg);
     -ms-transform: rotate(-90deg);
     -o-transform: rotate(-90deg);
     transform: rotate(-90deg);
 }
-.dropdown.inactive .ddSelected .arrow {
+#selections .dropdown.inactive .ddSelected .arrow {
     display: none;
 }
-.dropdown.hover .ddSelected, .dropdown.active .ddSelected {
+#selections .dropdown.hover .ddSelected, #selections .dropdown.active .ddSelected {
     height: 20px;
     color: #00AB8E;
     background-color: #FFFFFF;
 }
-.dropdown.inactive.hover .ddSelected{
+#selections .dropdown.inactive.hover .ddSelected{
     height: 20px;
     color: #999999;
     background-color: #CCCCCC;
     border-color: #999999;
 }
-.dropdown .ddList {
+#selections .dropdown .ddList {
     height: 0px;
     max-height: 0px;
     min-height: 0px;
@@ -440,17 +448,17 @@ Screen One Drop Downs
     -o-transition: all 0.3s linear;
     transition: all 0.3s linear;
 }
-.dropdown.hover .ddList {
+#selections .dropdown.hover .ddList {
     max-height: 102px;
     min-height: 0px;
     height: auto;
 }
-.dropdown.inactive.hover .ddList {
+#selections .dropdown.inactive.hover .ddList {
     height: 0px;
     max-height: 0px;
     min-height: 0px;
 }
-.dropdown .ddList .ddOption{
+#selections .dropdown .ddList .ddOption{
     width: 250px;
     height: 16px;
     padding: 4px 0 0 0;
@@ -458,15 +466,15 @@ Screen One Drop Downs
     display: block;
     text-align: center;
 }
-.dropdown .ddList .ddOption:hover {
+#selections .dropdown .ddList .ddOption:hover {
     color: #F0F1D3;
     background-color: #004E5F;
 }
-.dropdown .ddList .ddOption.active {
+#selections .dropdown .ddList .ddOption.active {
     color: #00AB8E;
     background-color: #FFFFFF;
 }
-.dropdown .ddList .ddOption.active:hover {
+#selections .dropdown .ddList .ddOption.active:hover {
     color: #00AB8E;
     background-color: #FFFFFF;
 }
@@ -506,11 +514,18 @@ Screen Two
     margin: 128px 0 24px 0;
     background-color: transparent;
 }
+#screen-2 .header .head-overlay .selected-icon {
+    position: absolute;
+    top: -4px;
+    left: 82px;
+    width: 46px;
+    height: 28px;
+}
 #screen-2 .header .head-overlay .selected-header {
     position: relative;
     top: 0px;
-    left: 142px;
-    width: 634px;
+    left: 148px;
+    width: 628px;
     height: 36px;
     font-family: "ForalPro-Bold";
     font-size: 25px;
@@ -536,7 +551,7 @@ Screen Two
 }
 #screen-2 .header .head-overlay .selected-header .bookend .stem {
     position: absolute;
-    left: 3px;
+    left: 0px;
     top: 9px;
     height: 2px;
     width: 100%;
@@ -584,10 +599,10 @@ Screen Two
 #screen-2 .header .head-overlay .datapoints .datapoint .numerator {
     width: 148px;
     height: 40px;
-    margin: 8px 0 8px 0;
+    margin: 12px 0 0 0;
     text-align: center;
     font-family: 'Gibson-SemiBold';
-    font-size: 32px;
+    font-size: 28px;
 }
 #screen-2 .header .head-overlay .datapoints .datapoint .context {
     width: 148px;
@@ -625,10 +640,10 @@ Screen Two
 }
 #screen-2 .modules .dataModule .overlay .head .icon-container {
     position: relative;
-    top: -2px;
-    left: 0px;
+    top: -4px;
+    left: -4px;
     width: 72px;
-    height: 40px;
+    height: 42px;
     display: inline-block;
     background-color: #FDB814;
     border-radius: 0px 12px 12px 0;
@@ -682,7 +697,61 @@ Screen Two
     width: 100%;
     background-color: #00B69E;
 }
+#screen-2 .modules .dataModule .overlay .viz {
+    position: relative;
+    top: 0px;
+    left: 35px;
+    width: 765px;
+}
+#screen-2 .modules .dataModule .overlay .viz .subhead {
+    position: absolute;
+    top: 0px;
+    left: 8px;
+    width: 765px;
+    line-height: 16px;
+}
+#screen-2 .modules .dataModule .overlay .viz .subhead .bookend-static {
+    position: absolute;
+    top: 9px;
+    left: 0px;
+    width: 48px;
+    height: 16px;
+}
+#screen-2 .modules .dataModule .overlay .viz .subhead .bookend-static .vert {
+    position: absolute;
+    left: 0px;
+    top: 2px;
+    height: 16px;
+    width: 3px;
+    background-color: #00B69E;   
+}
+#screen-2 .modules .dataModule .overlay .viz .subhead .bookend-static .stem {
+    position: absolute;
+    left: 0px;
+    top: 9px;
+    height: 2px;
+    width: 100%;
+    background-color: #00B69E;
+}
+#screen-2 .modules .dataModule .overlay .viz .title {
+    position: absolute;
+    left: 52px;
+    top: 13px;
+    font-family: 'Gibson-SemiBold';
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+#screen-2 .modules .dataModule .overlay .viz .desc {
+    position: absolute;
+    top: 36px;
+    left: 0px;
+    width: 756px;
+    font-family: 'Gibson-Light';
+    font-size: 12px;
+}
+#screen-2 .modules .dataModule .overlay .viz {
 
+}
 /*
 Ratings & Reviews Module
 */
@@ -696,7 +765,7 @@ Ratings & Reviews Module
     left: 0px;
     height: 100%;
     width: 100%;
-    background: url('../img/ratings-reviews-bg.png') no-repeat 0px 0px;
+    background: url('../img/ratings-reviews-bg.png') no-repeat 0px 36px;
 }
 #ratingsReviews .overlay {
     position: absolute;
@@ -709,6 +778,123 @@ Ratings & Reviews Module
     position: absolute;
     top: -8px !important;
     left: -44px !important;
+}
+#ratingsReviews .overlay .viz {
+    height: 506px;
+}
+#ratingsReviews .overlay .viz .barTotals {
+    position: absolute;
+    top: 82px;
+    left: 0px;
+    width: 100%;
+    height: 20px;
+    font-family: 'Gibson-SemiBold';
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+#ratingsReviews .overlay .viz .barTotals .barTotal {
+    position: absolute;
+    top: 0px;
+    width: 40px;
+    height: 20px;
+    text-align: right;
+}
+#ratingsReviews .overlay .viz .barTotals .barTotal.aov.industry {
+    left: 72px;
+}
+#ratingsReviews .overlay .viz .barTotals .barTotal.aov.all {
+    left: 130px;
+}
+#ratingsReviews .overlay .viz .barTotals .barTotal.conversion.industry {
+    left: 312px;
+}
+#ratingsReviews .overlay .viz .barTotals .barTotal.conversion.all {
+    left: 366px;
+}
+#ratingsReviews .overlay .viz .barTotals .barTotal.rpv.industry {
+    left: 556px;
+}
+#ratingsReviews .overlay .viz .barTotals .barTotal.rpv.all {
+    left: 608px;
+}
+#ratingsReviews .overlay .viz .barLabelIndustry, #ratingsReviews .overlay .viz .barLabelAll {
+    position: absolute;
+    top: -147px;
+    left: 147px;
+    width: 506px;
+    height: 800px;
+    font-family: 'Gibson-SemiBold';
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+#ratingsReviews .overlay .viz .barLabelIndustry .barLabel, #ratingsReviews .overlay .viz .barLabelAll .barLabel {
+    position: absolute;
+    left: 100px;
+}
+#ratingsReviews .overlay .viz .barLabelIndustry .barLabel.purple {
+    top: 88px;
+}  
+#ratingsReviews .overlay .viz .barLabelIndustry .barLabel.orange {
+    top: 328px;
+}
+#ratingsReviews .overlay .viz .barLabelIndustry .barLabel.teal {
+    top: 572px;
+}
+#ratingsReviews .overlay .viz .barLabelAll .barLabel:nth-child(1) {
+    top: 124px;
+}
+#ratingsReviews .overlay .viz .barLabelAll .barLabel:nth-child(2) {
+    top: 364px;
+}
+#ratingsReviews .overlay .viz .barLabelAll .barLabel:nth-child(3) {
+    top: 608px;
+}
+#ratingsReviews .overlay .viz .dataBars {
+    position: absolute;
+    top: 128px;
+    left: 100px;
+    width: 542px;
+    height: 282px;
+}
+#ratingsReviews .overlay .viz .dataBars .dataBar {
+    position: absolute;
+    bottom: 0px;
+    width: 11px;
+    height: 0px;
+}
+#ratingsReviews .overlay .viz .dataBars .dataBar.purple-bg {
+    left: 7px;
+}
+#ratingsReviews .overlay .viz .dataBars .dataBar.orange-bg {
+    left: 246px;
+}
+#ratingsReviews .overlay .viz .dataBars .dataBar.teal-bg {
+    left: 489px;
+}
+#ratingsReviews .overlay .viz .dataBars .dataBar:nth-child(4) {
+    left: 42px;
+}
+#ratingsReviews .overlay .viz .dataBars .dataBar:nth-child(5) {
+    left: 282px;
+}
+#ratingsReviews .overlay .viz .dataBars .dataBar:nth-child(6) {
+    left: 526px;
+}
+#ratingsReviews .overlay .viz .barTitles {
+    position: absolute;
+    top: 432px;
+    left: 0px;
+    width: 100%;
+    height: 28px;
+    font-family: 'Gibson-SemiBold';
+    font-size: 13px;
+}
+#ratingsReviews .overlay .viz .barTitles .barTitle {
+    position: relatives;
+    width: 242px;
+    height: 28px;
+    display: inline-block;
+    text-align: center;
 }
 
 /*
@@ -724,14 +910,68 @@ Questions & Answers Module
     left: 0px;
     height: 100%;
     width: 100%;
-    background: url('../img/questions-answers-bg.png') no-repeat 0px -48px;
+    background: url('../img/questions-answers-bg.png') no-repeat 0px -12px;
 }
-#questionAnswers .overlay {
+#questionsAnswers .overlay {
     position: absolute;
     top: 0px;
     left: 0px;
     height: 100%;
     width: 100%;
+}
+#questionsAnswers .overlay .viz {
+    height: 256px;
+}
+#questionsAnswers .overlay .viz .dataValues {
+    position: absolute;
+    top: 124px;
+    left: 0px;
+    width: 765px;
+    height: 48px;
+    font-family: 'Gibson-SemiBold';
+    font-size: 40px;
+    letter-spacing: 2px;
+}
+#questionsAnswers .overlay .viz .dataValues .dataValue {
+    position: absolute;
+    top: 0px;
+    width: 126px;
+    height: 48px;
+    text-align: center;
+}
+#questionsAnswers .overlay .viz .dataValues .dataValue.purple {
+    left: 146px;
+}
+#questionsAnswers .overlay .viz .dataValues .dataValue.orange {
+    left: 390px;
+}
+#questionsAnswers .overlay .viz .dataValues .dataValue.teal {
+    left: 634px;
+}
+#questionsAnswers .overlay .viz .dataTitles {
+    position: absolute;
+    top: 228px;
+    left: 0px;
+    width: 765px;
+    height: 28px;
+    font-family: 'Gibson-SemiBold';
+    font-size: 13px;
+}
+#questionsAnswers .overlay .viz .dataTitles .dataTitle {
+    position: absolute;
+    top: 0px;
+    width: 200px;
+    height: 28px;
+    text-align: left;
+}
+#questionsAnswers .overlay .viz .dataTitles .dataTitle.purple {
+    left: 50px;
+}
+#questionsAnswers .overlay .viz .dataTitles .dataTitle.orange {
+    left: 298px;
+}
+#questionsAnswers .overlay .viz .dataTitles .dataTitle.teal {
+    left: 538px;
 }
 
 /*
@@ -747,7 +987,7 @@ Average All Module
     left: 0px;
     height: 100%;
     width: 100%;
-    background: url('../img/average-all-bg.png') no-repeat 0px -62px;
+    background: url('../img/average-all-bg.png') no-repeat 0px 8px;
 }
 #averageAll .overlay {
     position: absolute;
@@ -755,6 +995,64 @@ Average All Module
     left: 0px;
     height: 100%;
     width: 100%;
+}
+#averageAll .overlay .viz {
+    height: 216px;
+}
+#averageAll .overlay .viz .desc {
+    top: 12px !important;
+}
+#averageAll .overlay .viz .selected-icon {
+    position: absolute;
+    width: 52px;
+    height: 52px;
+    top: 90px;
+    left: 152px;
+}
+#averageAll .overlay .viz .dataTitles {
+    position: absolute;
+    top: -275px;
+    left: 274px;
+    height: 765px;
+    width: 216px;
+    font-family: 'Gibson-SemiBold';
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+#averageAll .overlay .viz .dataTitles .dataTitle {
+    position: absolute;
+    width: 170px;
+    height: 40px;
+    text-align: center
+}
+#averageAll .overlay .viz .dataTitles .dataTitle.gold {
+    top: 84px;
+}
+#averageAll .overlay .viz .dataTitles .dataTitle.mint {
+    top: 454px;
+}
+#averageAll .overlay .viz .dataValues {
+    position: absolute;
+    top: 102px;
+    left: 0px;
+    width: 765px;
+    height: 48px;
+}
+#averageAll .overlay .viz .dataValues .dataValue {
+    position: absolute;
+    top: 0px;
+    width: 108px;
+    height: 48px;
+    font-family: 'Gibson-SemiBold';
+    font-size: 40px;
+    letter-spacing: 2px;
+    text-align: center;
+}
+#averageAll .overlay .viz .dataValues .dataValue.gold {
+    left: 238px;
+}
+#averageAll .overlay .viz .dataValues .dataValue.mint {
+    left: 600px;
 }
 
 /*
@@ -764,13 +1062,20 @@ Ratings Distributions Module
 #ratingsDistribution {
     height: 345px;
 }
+#ratingsDistribution .yellow-line {
+    position: absolute;
+    top: 38px;
+    left: 31px;
+    width: 4px;
+    height: 28px;
+}
 #ratingsDistribution .background {
     position: absolute;
     top: 0px;
     left: 0px;
     height: 100%;
     width: 100%;
-    background: url('../img/ratings-distribution-bg.png') no-repeat 0px 0px;
+    background: url('../img/ratings-distribution-bg.png') no-repeat 0px 64px;
 }
 #ratingsDistribution .overlay {
     position: absolute;
@@ -778,6 +1083,68 @@ Ratings Distributions Module
     left: 0px;
     height: 100%;
     width: 100%;
+}
+#ratingsDistribution .overlay .viz {
+    height: 301px;
+}
+#ratingsDistribution .overlay .viz .desc {
+    top: 12px !important;
+}
+#ratingsDistribution .overlay .viz .industryTitle {
+    position: absolute;
+    top: 148px;
+    left: -108px;
+    height: 20px;
+    width: 260px;
+    font-family: 'Gibson-SemiBold';
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-align: center;
+}
+#ratingsDistribution .overlay .viz .dataBars {
+    position: absolute;
+    top: 58px;
+    left: 182px;
+    width: 466px;
+    height: 206px;
+}
+#ratingsDistribution .overlay .viz .dataBars .dataBar {
+    position: absolute;
+    left: 0px;
+    height: 11px;
+    width: auto;
+}
+#ratingsDistribution .overlay .viz .dataBars .dataBar.gold-bg {
+    top: 11px;
+}
+#ratingsDistribution .overlay .viz .dataBars .dataBar.lime-bg {
+    top: 54px;
+}
+#ratingsDistribution .overlay .viz .dataBars .dataBar.burgundy-bg {
+    top: 98px;
+}
+#ratingsDistribution .overlay .viz .dataBars .dataBar.mint-bg {
+    top: 139px;
+}
+#ratingsDistribution .overlay .viz .dataBars .dataBar.aqua-bg {
+    top: 184px;
+}
+#ratingsDistribution .overlay .viz .dataValues {
+    position: absolute;
+    top: 66px;
+    left: 692px;
+    width: 48px;
+    height: 192px;
+    font-family: 'Gibson-SemiBold';
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+#ratingsDistribution .overlay .viz .dataValues .dataValue {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 48px;
+    height: 44px;
 }
 
 /*
@@ -793,7 +1160,15 @@ Screen Two Footer
 #footer .top-bar {
     width: 800px;
     height: 37px;
-    margin-top: -5px;
+    margin: -5px 0 20px;
+    background-color: #E8EEEF;
+}
+#footer .top-bar .yellow-line {
+    position: absolute;
+    top: 0px;
+    left: 31px;
+    width: 28px;
+    height: 4px;
 }
 #footer .arrow {
     width: 262px;
@@ -842,7 +1217,7 @@ Screen Two Footer
     font-size: 11px;
     color: #4F5556;
     text-align: center;
-    height: 40px;
+    height: 16px;
 }
 #sign-up {
     background-position: 0 -156px;      

@@ -1,0 +1,13 @@
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
+<g id="small_icon">
+	<polygon style="fill:#004E5F;" points="32,34 9,34 9,30 11,30 11,32 30,32 30,2 11,2 11,13 9,13 9,0 32,0 	"/>
+	<path style="fill:#004E5F;" d="M38,34h-8V0h8V34z M32,32h4V2h-4V32z"/>
+	<path style="fill:#004E5F;" d="M27,31H0V14h27V31z M2,29h23V16H2V29z"/>
+	<path style="fill:#004E5F;" d="M18,21H8v-3h10V21z M9,20h8v-1H9V20z"/>
+	<path style="fill:#004E5F;" d="M29,30h-4V17h4V30z M26,29h2V18h-2V29z"/>
+	<path style="fill:#004E5F;" d="M29,18h-1v-5h-1.242l0.196-0.646C26.986,12.253,27,12.17,27,12.093v-0.186
+		c0-0.5-0.407-0.907-0.907-0.907h-4.186C21.407,11,21,11.406,21,11.906c0,0,0.018,0.333,0.047,0.457l0.148,0.616L20.567,13H6v2H5v-3
+		h15.005c-0.001-0.021-0.003-0.043-0.004-0.063C20,10.855,20.855,10,21.907,10h4.186C27.145,10,28,10.855,28,11.907V12h1V18z"/>
+	<polygon style="fill:#004E5F;" points="29,14 28,14 28,8 13,8 13,13 12,13 12,7 29,7 	"/>
+</g>
+</svg>
