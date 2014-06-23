@@ -4,7 +4,7 @@
 General Utility Functions
 */
 
-	//Get String Width - Modifies String Prototype
+	//Get String Width, Accepts String and Font Family/Weight/Size (as a string)
 	var getStringWidth  			= function (string, font) {
 		var o = $('<div>' + string + '</div>').css({'position': 'absolute', 'float': 'left', 'white-space': 'nowrap', 'visibility': 'hidden', 'font': font}).appendTo($('body')),
 			w = o.width();
@@ -12,7 +12,7 @@ General Utility Functions
 		return w;
 	};
 
-	//Check if Object is Empty
+	//Checks if Object is Empty & Returns Boolean
 	var isEmpty 					= function (obj) {
 		for (var i in obj) {return false}; return true;
 	};
@@ -40,19 +40,21 @@ General Utility Functions
 		return l2 + (x - l1) * (h2 -l2) / (h1 - l1);
 	};
 
-	//Takes a Number and returns a Rounding Factor
+	//Takes a Whole Number and Return Round Up
 	var setRoundedMax 				= function (num) {
-		var fStr 	= String(num).charAt(0),
-			first 	= Number(fStr),
-			length 	= (num.toString()).length,
+		var length 	= num.toString().length,
+			integer = parseFloat(num).toFixed(0),
 			round 	= (length === 1) ? num : (length === 2) 
-					? Math.ceil(num/10) * 10 : (length === 3) 
-					? Math.ceil(num/100) * 100 : (length === 4) 
-					? Math.ceil(num/1000) * 1000 : (length === 5)
-					? Math.ceil(num/10000) * 10000 : (length === 6)
-					? Math.ceil(num/100000) * 100000 : (length === 7)
-					? Math.ceil(num/1000000) * 1000000 : console.log('Error on setRoundUp Function: Value too large.'); 
-		return (first * round);
+					? Math.ceil(integer/10) * 10 : (length === 3) 
+					? Math.ceil(integer/100) * 100 : (length === 4) 
+					? Math.ceil(integer/1000) * 1000 : (length === 5)
+					? Math.ceil(integer/10000) * 10000 : (length === 6)
+					? Math.ceil(integer/100000) * 100000 : (length === 7)
+					? Math.ceil(integer/1000000) * 1000000 : (length === 8)
+					? Math.ceil(integer/10000000) * 10000000 : (length === 9)
+					? Math.ceil(integer/100000000) * 100000000 : (length === 10)
+					? Math.ceil(integer/1000000000) * 1000000000 : console.log('Error on setRoundedMax(): Value too large.'); 
+		return round;
 	};
 
 /*
@@ -276,6 +278,8 @@ Interactive Dashboard Viewmodel
 			$(dash.screenOne).fadeOut(function () {
 				$('body').scrollTop(0);
 				$(dash.screenTwo).fadeIn();
+				var height = $(dash.content).height();
+				$(dash.content).height(height - 380);
 			});
 	};
 
@@ -313,8 +317,9 @@ Interactive Dashboard Viewmodel
 			rpvMax 			= Math.max(dash.data.roi_rr_revenue_per_visit, dash.activeData.roi_rr_revenue_per_visit),
 			absMax 			= Math.max.apply(null, [aovMax, conversionMax, rpvMax]),
 			absoluteMax 	= percentify(absMax, 0, false),
-			roundedMax 		= setRoundedMax(absoluteMax);
-			console.log(roundedMax);
+			fStr 			= String(absoluteMax).charAt(0),
+			first 			= Number(fStr),
+			roundedMax 		= (setRoundedMax(absoluteMax) * first);
 			//Industry Bar Graphs
 			if (dash.activeData.roi_rr_aov !== null || dash.activeData.roi_rr_conversion !== null || dash.activeData.roi_rr_revenue_per_visit !== null) {
 				dash.showRRIndustryBars(true);
@@ -331,12 +336,10 @@ Interactive Dashboard Viewmodel
 			dash.rrAovAll(remapValue((dash.data.roi_rr_aov * 100), 0, roundedMax, 0, 282)),
 			dash.rrConversionAll(remapValue((dash.data.roi_rr_conversion * 100), 0, roundedMax, 0, 282)),
 			dash.rrRpvAll(remapValue((dash.data.roi_rr_revenue_per_visit * 100), 0, roundedMax, 0, 282));
-
 			//Bar Percentage Text
 			dash.rrAovAllPercent(percentify(dash.data.roi_rr_aov, 0 , true)),
 			dash.rrConversionAllPercent(percentify(dash.data.roi_rr_conversion, 0 , true)),
 			dash.rrRpvAllPercent(percentify(dash.data.roi_rr_revenue_per_visit, 0 , true));
-
 			//Set Max & Mid Marker Values (Min Will be 0)
 			dash.rrMax(roundedMax),
 			dash.rrMid(roundedMax/2),
@@ -362,7 +365,6 @@ Interactive Dashboard Viewmodel
 	//Renders Ratings Distribution Data Module
 	Dashboard.prototype.renderRDModule 					= function () {
 		var dash = this;
-
 			//Bar Graphs
 			dash.rd5(dash.activeData.rating_distribution_5 * 466),
 			dash.rd4(dash.activeData.rating_distribution_4 * 466),

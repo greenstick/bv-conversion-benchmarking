@@ -168,6 +168,7 @@ Containers
     position: relative;
     width: 800px;
     margin: 0 auto;
+    /*overflow: hidden;*/
 }
 #header-bar {
     width: 800px;
@@ -1072,9 +1073,11 @@ Average All Module
 }
 #averageAll .overlay .viz .dataTitles .dataTitle.gold {
     top: 84px;
+    left: 6px;
 }
 #averageAll .overlay .viz .dataTitles .dataTitle.mint {
     top: 454px;
+    left: 6px;
 }
 #averageAll .overlay .viz .dataValues {
     position: absolute;
