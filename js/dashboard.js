@@ -34,10 +34,12 @@ General Utility Functions
 	    };
 	    return str.join('.');
 	};
+
 	//Remaps Value in Range to new Range
 	var remapValue 					= function (x, l1, h1, l2, h2) {
 		return l2 + (x - l1) * (h2 -l2) / (h1 - l1);
 	};
+
 	//Takes a Number and returns a Rounding Factor
 	var setRoundedMax 				= function (num) {
 		var fStr 	= String(num).charAt(0),
@@ -375,7 +377,10 @@ Interactive Dashboard Viewmodel
 			dash.rd1Text(percentify(dash.activeData.rating_distribution_1, 0 , true));
 	};
 
-	//Instantiate, Initialize, Apply Bindings
+/*
+Instantiate, Initialize, Apply Bindings
+*/
+
 	var dashboard = new Dashboard();
 		dashboard.init();
 		ko.applyBindings(dashboard);
