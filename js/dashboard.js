@@ -5,7 +5,7 @@ General Utility Functions
 */
 
 	//Get String Width - Modifies String Prototype
-	getStringWidth  					= function (string, font) {
+	var getStringWidth  			= function (string, font) {
 		var o = $('<div>' + string + '</div>').css({'position': 'absolute', 'float': 'left', 'white-space': 'nowrap', 'visibility': 'hidden', 'font': font}).appendTo($('body')),
 			w = o.width();
 			o.remove();
@@ -17,9 +17,9 @@ General Utility Functions
 		for (var i in obj) {return false}; return true;
 	};
 
-	//Make Percentage
-	var percentify 					= function (val, dec) {
-		return (val === null) ? null : ((val * 100).toFixed(dec) + "%");
+	//Accepts Value, Decimal Place, and Whether '%' Should Be Appended or Not
+	var percentify 					= function (val, dec, str) {
+		return (val === null) ? null : (str === true) ? ((val * 100).toFixed(dec) + "%") : (val * 100).toFixed(dec);
 	};
 
 	//Formats numbers with commas
@@ -34,10 +34,23 @@ General Utility Functions
 	    };
 	    return str.join('.');
 	};
-	//Remaps a value within a given range to a target range
-	var remapValue 					= function (x, a, b, c, d) {
-	    if (a === b) return x >= b ? d : c;
-	    return (c + (d - c) * (x - a) / (b - a));
+	//Remaps Value in Range to new Range
+	var remapValue 					= function (x, l1, h1, l2, h2) {
+		return l2 + (x - l1) * (h2 -l2) / (h1 - l1);
+	};
+	//Takes a Number and returns a Rounding Factor
+	var setRoundedMax 				= function (num) {
+		var fStr 	= String(num).charAt(0),
+			first 	= Number(fStr),
+			length 	= (num.toString()).length,
+			round 	= (length === 1) ? num : (length === 2) 
+					? Math.ceil(num/10) * 10 : (length === 3) 
+					? Math.ceil(num/100) * 100 : (length === 4) 
+					? Math.ceil(num/1000) * 1000 : (length === 5)
+					? Math.ceil(num/10000) * 10000 : (length === 6)
+					? Math.ceil(num/100000) * 100000 : (length === 7)
+					? Math.ceil(num/1000000) * 1000000 : console.log('Error on setRoundUp Function: Value too large.'); 
+		return (first * round);
 	};
 
 /*
@@ -55,6 +68,7 @@ Interactive Dashboard Viewmodel
 				conversion 					: '.splashConversion',
 				rpv 						: '.splashRPV'
 			},
+			dash.content 					= '#content',
 			dash.dd 						= '#selections',
 			dash.ddVerticals 				= '#verticalSelect',	
 			dash.ddIndustries 				= '#industrySelect',
@@ -65,6 +79,8 @@ Interactive Dashboard Viewmodel
 			dash.books 						= '.books',
 			dash.bookend 					= '.bookend',
 			dash.subheader 					= '.subheader',
+			dash.s1Height 					= 864,
+			dash.s2Height 					= 2028,
 			//General Data Access Observables
 			dash.ddVertArray 				= ko.observableArray([]),
 			dash.ddInduArray 				= ko.observableArray([]),
@@ -100,12 +116,9 @@ Interactive Dashboard Viewmodel
 			dash.rrAovIndustryPercent		= ko.observable(null),
 			dash.rrConversionIndustryPercent= ko.observable(null),
 			dash.rrRpvIndustryPercent 		= ko.observable(null),
-			dash.rrAovMax 					= ko.observable(null),
-			dash.rrConversionMax 			= ko.observable(null),
-			dash.rrRpvMax 					= ko.observable(null),
-			dash.rrAovMid 					= ko.observable(null),
-			dash.rrConversionMid 			= ko.observable(null),
-			dash.rrRpvMid 					= ko.observable(null),
+			dash.rrMax 						= ko.observable(null),
+			dash.rrMid			 			= ko.observable(null),
+			dash.rrMin 						= ko.observable(null),
 			//QA Data Module Observables
 			dash.qaAovAll 					= ko.observable(null),
 			dash.qaConversionAll			= ko.observable(null),
@@ -249,7 +262,7 @@ Interactive Dashboard Viewmodel
 			dash.fadeScreens();
 	};
 
-	//Fade Screens
+	//Fade Screens - Sets Bookends & Renders Data Head + Modules
 	Dashboard.prototype.fadeScreens						= function () {
 		var dash = this;
 			dash.setBookends('25px ForalPro-Bold', 10);
@@ -283,7 +296,7 @@ Interactive Dashboard Viewmodel
 			dash.headDataReviews(commaNumbers(dash.activeData.total_submitted)),
 			dash.headDataQuestions(commaNumbers(dash.activeData.total_questions)),
 			dash.headDataAnswers(commaNumbers(dash.activeData.total_answers)),
-			dash.headDataPageviews(percentify(dash.activeData.ppv_with_reviews, 0)),
+			dash.headDataPageviews(percentify(dash.activeData.ppv_with_reviews, 0, true)),
 			dash.headDataClientsTotal(commaNumbers(dash.activeVerticalData.clients_included)),
 			dash.headDataReviewsTotal(commaNumbers(dash.activeVerticalData.total_submitted)),
 			dash.headDataQuestionsTotal(commaNumbers(dash.activeVerticalData.total_questions)),
@@ -295,49 +308,46 @@ Interactive Dashboard Viewmodel
 		var dash = this;
 			aovMax 			= Math.max(dash.data.roi_rr_aov, dash.activeData.roi_rr_aov),
 			conversionMax 	= Math.max(dash.data.roi_rr_conversion, dash.activeData.roi_rr_conversion),
-			rpvMax 			= Math.max(dash.data.roi_rr_revenue_per_visit, dash.activeData.roi_rr_revenue_per_visit);
-			console.log(aovMax);
-			console.log(conversionMax);
-			console.log(rpvMax);
-			//bar Graphs
+			rpvMax 			= Math.max(dash.data.roi_rr_revenue_per_visit, dash.activeData.roi_rr_revenue_per_visit),
+			absMax 			= Math.max.apply(null, [aovMax, conversionMax, rpvMax]),
+			absoluteMax 	= percentify(absMax, 0, false),
+			roundedMax 		= setRoundedMax(absoluteMax);
+			console.log(roundedMax);
+			//Industry Bar Graphs
 			if (dash.activeData.roi_rr_aov !== null || dash.activeData.roi_rr_conversion !== null || dash.activeData.roi_rr_revenue_per_visit !== null) {
 				dash.showRRIndustryBars(true);
-			};
-			if (dash.showRRIndustryBars() === true) {
 				//Remap Values
-				dash.rrAovIndustry(remapValue(dash.activeData.roi_rr_aov, 0, aovMax * 1.05, 0, 206)),
-				dash.rrConversionIndustry(remapValue(dash.activeData.roi_rr_conversion, 0, conversionMax * 1.05, 0, 206)),
-				dash.rrRpvIndustry(remapValue(dash.activeData.roi_rr_revenue_per_visit, 0, rpvMax * 1.05, 0, 206));
+				dash.rrAovIndustry(remapValue((dash.activeData.roi_rr_aov * 100), 0, roundedMax, 0, 282)),
+				dash.rrConversionIndustry(remapValue((dash.activeData.roi_rr_conversion * 100), 0, roundedMax, 0, 282)),
+				dash.rrRpvIndustry(remapValue((dash.activeData.roi_rr_revenue_per_visit * 100), 0, roundedMax, 0, 282));
 				//Show Industry Labels
-				dash.rrAovIndustryPercent(percentify(dash.activeData.roi_rr_aov)),
-				dash.rrConversionIndustryPercent(percentify(dash.activeData.roi_rr_conversion)),
-				dash.rrRpvIndustryPercent(percentify(dash.activeData.roi_rr_revenue_per_visit));
+				dash.rrAovIndustryPercent(percentify(dash.activeData.roi_rr_aov, 0 , true)),
+				dash.rrConversionIndustryPercent(percentify(dash.activeData.roi_rr_conversion, 0 , true)),
+				dash.rrRpvIndustryPercent(percentify(dash.activeData.roi_rr_revenue_per_visit, 0 , true));
 			};
-			dash.rrAovAll(remapValue(dash.data.roi_rr_aov, 0, aovMax * 1.05, 0, 206)),
-			dash.rrConversionAll(remapValue(dash.data.roi_rr_conversion, 0, conversionMax * 1.05, 0, 206)),
-			dash.rrRpvAll(remapValue(dash.data.roi_rr_revenue_per_visit, 0, rpvMax * 1.05, 0, 206));
+			//Vertical Bar Graphs
+			dash.rrAovAll(remapValue((dash.data.roi_rr_aov * 100), 0, roundedMax, 0, 282)),
+			dash.rrConversionAll(remapValue((dash.data.roi_rr_conversion * 100), 0, roundedMax, 0, 282)),
+			dash.rrRpvAll(remapValue((dash.data.roi_rr_revenue_per_visit * 100), 0, roundedMax, 0, 282));
 
 			//Bar Percentage Text
-			dash.rrAovAllPercent(percentify(dash.data.roi_rr_aov)),
-			dash.rrConversionAllPercent(percentify(dash.data.roi_rr_conversion)),
-			dash.rrRpvAllPercent(percentify(dash.data.roi_rr_revenue_per_visit));
+			dash.rrAovAllPercent(percentify(dash.data.roi_rr_aov, 0 , true)),
+			dash.rrConversionAllPercent(percentify(dash.data.roi_rr_conversion, 0 , true)),
+			dash.rrRpvAllPercent(percentify(dash.data.roi_rr_revenue_per_visit, 0 , true));
 
 			//Set Max & Mid Marker Values (Min Will be 0)
-			dash.rrAovMax(percentify(aovMax)),
-			dash.rrAovMid(percentify(aovMid/2)),
-			dash.rrConversionMax(percentify(conversionMax)),
-			dash.rrConversionMid(percentify(conversionMax/2)),
-			dash.rrRpvMax(percentify(rpvMax)),
-			dash.rrRpvMax(percentify(rpvMid));
+			dash.rrMax(roundedMax),
+			dash.rrMid(roundedMax/2),
+			dash.rrMin(0);
 
 	};
 
 	//Renders Questions & Answers Data Module
 	Dashboard.prototype.renderQAModule 					= function () {
 		var dash = this;
-			dash.qaAovAll(percentify(dash.data.roi_qa_lift_aov)),
-			dash.qaConversionAll(percentify(dash.data.roi_qa_lift_conversion)),
-			dash.qaRpvAll(percentify(dash.data.roi_qa_lift_revenue_per_visit));
+			dash.qaAovAll(percentify(dash.data.roi_qa_lift_aov, 0 , true)),
+			dash.qaConversionAll(percentify(dash.data.roi_qa_lift_conversion, 0 , true)),
+			dash.qaRpvAll(percentify(dash.data.roi_qa_lift_revenue_per_visit, 0 , true));
 	};
 
 	//Renders Average Ratings Data Module
@@ -358,11 +368,11 @@ Interactive Dashboard Viewmodel
 			dash.rd2(dash.activeData.rating_distribution_2 * 466),
 			dash.rd1(dash.activeData.rating_distribution_1 * 466),
 			//Percent Text
-			dash.rd5Text(percentify(dash.activeData.rating_distribution_5)),
-			dash.rd4Text(percentify(dash.activeData.rating_distribution_4)),
-			dash.rd3Text(percentify(dash.activeData.rating_distribution_3)),
-			dash.rd2Text(percentify(dash.activeData.rating_distribution_2)),
-			dash.rd1Text(percentify(dash.activeData.rating_distribution_1));
+			dash.rd5Text(percentify(dash.activeData.rating_distribution_5, 0 , true)),
+			dash.rd4Text(percentify(dash.activeData.rating_distribution_4, 0 , true)),
+			dash.rd3Text(percentify(dash.activeData.rating_distribution_3, 0 , true)),
+			dash.rd2Text(percentify(dash.activeData.rating_distribution_2, 0 , true)),
+			dash.rd1Text(percentify(dash.activeData.rating_distribution_1, 0 , true));
 	};
 
 	//Instantiate, Initialize, Apply Bindings

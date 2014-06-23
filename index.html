@@ -243,8 +243,8 @@
 					</div>
 				</div>
 				<div id="screen-2" style="display: none;">
-					<div class="header teal">
-						<div class="head">
+					<div class="head teal">
+						<div class="header">
 							Bazaarvoice Network Overview
 						</div>
 						<svg height="300">
@@ -280,73 +280,73 @@
 								<line fill="none" stroke="#00B69E" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="461.5" y1="22" x2="461.5" y2="29"/>
 							</g>
 						</svg>
-						<div class="head-overlay">
-							<!-- ko if: activeIcon() !== null -->
-							<img class="selected-icon" data-bind="attr: {src: 'img/icons/' + activeIcon() + '.svg'}">
+					</div>
+					<div class="head-overlay">
+						<!-- ko if: activeIcon() !== null -->
+						<img class="selected-icon" data-bind="attr: {src: 'img/icons/' + activeIcon() + '.svg'}">
+						<!-- /ko -->
+						<div class="selected-header teal">
+							<div class="books" data-bind="text: activeIndustry"></div>
+							<div class="bookend">
+								<div class="vert"></div>
+								<div class="stem"></div>
+							</div>
+						</div>
+						<div class="general-header teal">
+							THE WORLD'S LARGEST SHOPPING NETWORK
+						</div>
+						<div class="dynamic-body black">
+							Each month, more than 400 million people view and share authentic opinions, questions and
+							experiences about 20 million products on the Bazaarvoice network. For the <span data-bind="text: activeIndustry"></span>,
+							industry we saw the following across our network in the most recent quarter: 
+						</div>
+						<div class="datapoints">
+							<!-- ko if: headDataClients() !== null -->
+							<div class="datapoint">
+								<div class="numerator purple" data-bind="text: headDataClients"></div>
+								<div class="context">
+									out of<br />
+									<span data-bind="text: headDataClientsTotal"></span> clients 
+								</div>
+							</div>
 							<!-- /ko -->
-							<div class="selected-header">
-								<div class="books" data-bind="text: activeIndustry"></div>
-								<div class="bookend">
-									<div class="vert"></div>
-									<div class="stem"></div>
+							<!-- ko if: headDataReviews() !== null -->
+							<div class="datapoint">
+								<div class="numerator burgundy" data-bind="text: headDataReviews"></div>
+								<div class="context">
+									out of<br />
+									<span data-bind="text: headDataReviewsTotal"></span> reviews
 								</div>
 							</div>
-							<div class="general-header">
-								THE WORLD'S LARGEST SHOPPING NETWORK
+							<!-- /ko -->
+							<!-- ko if: headDataQuestions() !== null -->
+							<div class="datapoint">
+								<div class="numerator lime" data-bind="text: headDataQuestions"></div>
+								<div class="context">
+									out of<br />
+									<span data-bind="text: headDataQuestionsTotal"></span> questions
+								</div>
 							</div>
-							<div class="dynamic-body black">
-								Each month, more than 400 million people view and share authentic opinions, questions and
-								experiences about 20 million products on the Bazaarvoice network. For the <span data-bind="text: activeIndustry"></span>,
-								industry we saw the following across our network in the most recent quarter: 
+							<!-- /ko -->
+							<!-- ko if: headDataAnswers() !== null -->
+							<div class="datapoint">
+								<div class="numerator gold" data-bind="text: headDataAnswers"></div>
+								<div class="context">
+									out of<br />
+									<span data-bind="text: headDataAnswersTotal"></span> answers
+								</div>
 							</div>
-							<div class="datapoints">
-								<!-- ko if: headDataClients() !== null -->
-								<div class="datapoint">
-									<div class="numerator purple" data-bind="text: headDataClients"></div>
-									<div class="context">
-										out of<br />
-										<span data-bind="text: headDataClientsTotal"></span> clients 
-									</div>
+							<!-- /ko -->
+							<!-- ko if: headDataPageviews() !== null -->
+							<div class="datapoint">
+								<div class="numerator aqua" data-bind="text: headDataPageviews"></div>
+								<div class="context">
+									of product<br />
+									pageviews with<br />
+									reviews
 								</div>
-								<!-- /ko -->
-								<!-- ko if: headDataReviews() !== null -->
-								<div class="datapoint">
-									<div class="numerator burgundy" data-bind="text: headDataReviews"></div>
-									<div class="context">
-										out of<br />
-										<span data-bind="text: headDataReviewsTotal"></span> reviews
-									</div>
-								</div>
-								<!-- /ko -->
-								<!-- ko if: headDataQuestions() !== null -->
-								<div class="datapoint">
-									<div class="numerator lime" data-bind="text: headDataQuestions"></div>
-									<div class="context">
-										out of<br />
-										<span data-bind="text: headDataQuestionsTotal"></span> questions
-									</div>
-								</div>
-								<!-- /ko -->
-								<!-- ko if: headDataAnswers() !== null -->
-								<div class="datapoint">
-									<div class="numerator gold" data-bind="text: headDataAnswers"></div>
-									<div class="context">
-										out of<br />
-										<span data-bind="text: headDataAnswersTotal"></span> answers
-									</div>
-								</div>
-								<!-- /ko -->
-								<!-- ko if: headDataPageviews() !== null -->
-								<div class="datapoint">
-									<div class="numerator aqua" data-bind="text: headDataPageviews"></div>
-									<div class="context">
-										of product<br />
-										pageviews with<br />
-										reviews
-									</div>
-								</div>
-								<!-- /ko -->
 							</div>
+							<!-- /ko -->
 						</div>
 					</div>
 					<div class="modules">
@@ -425,6 +425,17 @@
 										<div class="dataBar mint-bg" data-bind="attr: {style: 'height:' + rrConversionAll() + 'px'}"></div>
 										<div class="dataBar mint-bg" data-bind="attr: {style: 'height:' + rrRpvAll() + 'px'}"></div>
 									</div>
+									<div class="barMarkers">
+										<div class="barMarker max" data-bind="text: '+' + rrMax() + '%'"></div>
+										<div class="barMarker max" data-bind="text: '+' + rrMax() + '%'"></div>
+										<div class="barMarker max" data-bind="text: '+' + rrMax() + '%'"></div>
+										<div class="barMarker mid" data-bind="text: '+' + rrMid() + '%'"></div>
+										<div class="barMarker mid" data-bind="text: '+' + rrMid() + '%'"></div>
+										<div class="barMarker mid" data-bind="text: '+' + rrMid() + '%'"></div>
+										<div class="barMarker min" data-bind="text: '+' + rrMin() + '%'"></div>
+										<div class="barMarker min" data-bind="text: '+' + rrMin() + '%'"></div>
+										<div class="barMarker min" data-bind="text: '+' + rrMin() + '%'"></div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -472,9 +483,9 @@
 										</div>
 									</div>
 									<div class="dataValues">
-										<div class="dataValue purple" data-bind="text: qaAovAll"></div>
-										<div class="dataValue orange" data-bind="text: qaConversionAll"></div>
-										<div class="dataValue teal" data-bind="text: qaRpvAll"></div>
+										<div class="dataValue purple" data-bind="text: '+' + qaAovAll()"></div>
+										<div class="dataValue orange" data-bind="text: '+' + qaConversionAll()"></div>
+										<div class="dataValue teal" data-bind="text: '+' + qaRpvAll()"></div>
 									</div>
 									<div class="dataTitles">
 										<div class="dataTitle purple">AVERAGE ORDER VALUE</div>

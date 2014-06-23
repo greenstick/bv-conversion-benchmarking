@@ -195,6 +195,8 @@ Containers
     left: 0;
     top: 60px;
     width: 800px;
+    height: auto;
+    overflow: hidden;
 }
 
 /*
@@ -484,9 +486,9 @@ Screen Two
 */
 
 #screen-2 {
-    height: 1000px;
+    height: 2028px;
 }
-#screen-2 .header {
+#screen-2 .head {
     position: relative;
     top: 0px;
     left: 0px;
@@ -494,7 +496,7 @@ Screen Two
     height: 420px;
     background-color: #FFFFFF;
 }
-#screen-2 .header .head {
+#screen-2 .head .header {
     position: absolute;
     top: 0px;
     left: 0px;
@@ -505,23 +507,23 @@ Screen Two
     font-size: 36px;
     text-align: center;
 }
-#screen-2 .header .head-overlay {
-    position: absolute;
-    top: 0px;
+#screen-2 .head-overlay {
+    position: relative;
+    top: -420px;
     left: 0px;
     height: auto;
     width: 800px;
-    margin: 128px 0 24px 0;
+    margin: 128px 0 0px 0;
     background-color: transparent;
 }
-#screen-2 .header .head-overlay .selected-icon {
+#screen-2 .head-overlay .selected-icon {
     position: absolute;
     top: -4px;
     left: 82px;
     width: 46px;
     height: 28px;
 }
-#screen-2 .header .head-overlay .selected-header {
+#screen-2 .head-overlay .selected-header {
     position: relative;
     top: 0px;
     left: 148px;
@@ -531,17 +533,17 @@ Screen Two
     font-size: 25px;
     text-align: left;
 }
-#screen-2 .header .head-overlay .selected-header .books {
+#screen-2 .head-overlay .selected-header .books {
     width: auto;
 }
-#screen-2 .header .head-overlay .selected-header .bookend {
+#screen-2 .head-overlay .selected-header .bookend {
     position: absolute;
     top: 2px;
     left: 0px;
     width: 100px;
     height: 20px;
 }
-#screen-2 .header .head-overlay .selected-header .bookend .vert {
+#screen-2 .head-overlay .selected-header .bookend .vert {
     position: absolute;
     left: 0px;
     top: 0px;
@@ -549,7 +551,7 @@ Screen Two
     width: 3px;
     background-color: #00B69E;
 }
-#screen-2 .header .head-overlay .selected-header .bookend .stem {
+#screen-2 .head-overlay .selected-header .bookend .stem {
     position: absolute;
     left: 0px;
     top: 9px;
@@ -557,9 +559,9 @@ Screen Two
     width: 100%;
     background-color: #00B69E;
 }
-#screen-2 .header .head-overlay .general-header {
+#screen-2 .head-overlay .general-header {
     position: relative;
-    top: 0px;
+    top: 8px;
     left: 72px;
     width: auto;
     height: 36px;
@@ -567,7 +569,7 @@ Screen Two
     font-size: 21px;
     letter-spacing: 1px;
 }
-#screen-2 .header .head-overlay .dynamic-body {
+#screen-2 .head-overlay .dynamic-body {
     position: relative;
     top: 0px;
     left: 72px;
@@ -578,25 +580,25 @@ Screen Two
     letter-spacing: 1px;
     line-height: 28px;
 }
-#screen-2 .header .head-overlay .datapoints {
+#screen-2 .head-overlay .datapoints {
     position: relative;
-    top: 20px;
+    top: 0px;
     left: 22px;
     width: 756px;
     height: 120px;
-    margin-top: 4px;
+    margin-top: 8px;
     font-size: 0px;
 }
-#screen-2 .header .head-overlay .datapoints .datapoint {
+#screen-2 .head-overlay .datapoints .datapoint {
     float: left;
     width: 148px;
     height: 104px;
     border-right: 2px solid  #E8EEEF;
 }
-#screen-2 .header .head-overlay .datapoints .datapoint:last-child {
+#screen-2 .head-overlay .datapoints .datapoint:last-child {
     border: none;
 }
-#screen-2 .header .head-overlay .datapoints .datapoint .numerator {
+#screen-2 .head-overlay .datapoints .datapoint .numerator {
     width: 148px;
     height: 40px;
     margin: 12px 0 0 0;
@@ -604,7 +606,7 @@ Screen Two
     font-family: 'Gibson-SemiBold';
     font-size: 28px;
 }
-#screen-2 .header .head-overlay .datapoints .datapoint .context {
+#screen-2 .head-overlay .datapoints .datapoint .context {
     width: 148px;
     height: 40px;
     margin: 0 0 8px 0;
@@ -616,7 +618,7 @@ Screen Two
 }
 #screen-2 .modules {
     position: relative;
-    top: 0px;
+    top: -420px;
     left: 0px;
     width: 800px;
     height: auto;
@@ -819,10 +821,10 @@ Ratings & Reviews Module
 }
 #ratingsReviews .overlay .viz .barLabelIndustry, #ratingsReviews .overlay .viz .barLabelAll {
     position: absolute;
-    top: -147px;
-    left: 147px;
+    top: -130px;
+    left: 129px;
     width: 506px;
-    height: 800px;
+    height: 765px;
     font-family: 'Gibson-SemiBold';
     font-size: 11px;
     letter-spacing: 1px;
@@ -879,6 +881,49 @@ Ratings & Reviews Module
 }
 #ratingsReviews .overlay .viz .dataBars .dataBar:nth-child(6) {
     left: 526px;
+}
+#ratingsReviews .overlay .viz .barMarkers {
+    position: absolute;
+    top: 112px;
+    left: 90px;
+    width: 608px;
+    height: 309px;
+}
+#ratingsReviews .overlay .viz .barMarkers .barMarker {
+    position: absolute;
+    width: 32px;
+    height: 20px;
+    font-family: 'Gibson-Regular';
+    font-size: 8px;
+}
+#ratingsReviews .overlay .viz .barMarkers .max {
+    top: 17px;
+}
+#ratingsReviews .overlay .viz .barMarkers .mid {
+    top: 154px;
+}
+#ratingsReviews .overlay .viz .barMarkers .min {
+    top: 290px;
+}
+#ratingsReviews .overlay .viz .barMarkers .max:nth-child(1), #ratingsReviews .overlay .viz .barMarkers .mid:nth-child(4), #ratingsReviews .overlay .viz .barMarkers .min:nth-child(7) {
+    left: 84px;
+}
+#ratingsReviews .overlay .viz .barMarkers .max:nth-child(2), #ratingsReviews .overlay .viz .barMarkers .mid:nth-child(5), #ratingsReviews .overlay .viz .barMarkers .min:nth-child(8) {
+    left: 319px;
+}
+#ratingsReviews .overlay .viz .barMarkers .max:nth-child(3), #ratingsReviews .overlay .viz .barMarkers .mid:nth-child(6), #ratingsReviews .overlay .viz .barMarkers .min:nth-child(9) {
+    left: 561px;
+}
+#ratingsReviews .overlay .viz .barMarkers .max:nth-child(3) {
+    top: 19px;
+}
+
+#ratingsReviews .overlay .viz .barMarkers .mid:nth-child(6) {
+    top: 156px;
+}
+
+#ratingsReviews .overlay .viz .barMarkers .min:nth-child(9) {
+    top: 292px;
 }
 #ratingsReviews .overlay .viz .barTitles {
     position: absolute;
@@ -943,10 +988,10 @@ Questions & Answers Module
     left: 146px;
 }
 #questionsAnswers .overlay .viz .dataValues .dataValue.orange {
-    left: 390px;
+    left: 386px;
 }
 #questionsAnswers .overlay .viz .dataValues .dataValue.teal {
-    left: 634px;
+    left: 622px;
 }
 #questionsAnswers .overlay .viz .dataTitles {
     position: absolute;
@@ -1153,7 +1198,7 @@ Screen Two Footer
 
 #footer {
     position: relative;
-    top: 0px;
+    top: -420px;
     height: 182px;
     font-family: 'Gibson-SemiBold';
 }
