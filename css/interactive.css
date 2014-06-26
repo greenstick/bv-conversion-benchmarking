@@ -520,8 +520,8 @@ Screen Two
 #screen-2 .head-overlay .selected-icon {
     position: absolute;
     top: -4px;
-    left: 82px;
-    width: 46px;
+    left: 94px;
+    width: 28px;
     height: 28px;
 }
 #screen-2 .head-overlay .selected-header {
@@ -653,7 +653,7 @@ Screen Two
 }
 #screen-2 .modules .dataModule .overlay .head .icon-container .icon {
     position: absolute;
-    top: 2px;
+    top: 4px;
     left: -44px;
     width: 120px;
     height: 48px;
@@ -779,7 +779,7 @@ Ratings & Reviews Module
 }
 #ratingsReviews .overlay .head .icon-container .icon {
     position: absolute;
-    top: -8px !important;
+    top: -6px !important;
     left: -44px !important;
 }
 #ratingsReviews .overlay .viz {
@@ -1052,8 +1052,8 @@ Average All Module
     position: absolute;
     width: 52px;
     height: 52px;
-    top: 90px;
-    left: 152px;
+    top: 88px;
+    left: 143px;
 }
 #averageAll .overlay .viz .dataTitles {
     position: absolute;
@@ -1276,43 +1276,11 @@ Screen Two Footer
 #start-over{
     background-position: 0 -182px;
 }
-
-/*
-960
-*/
-
-/*
-    Variable Grid System.
-    Learn more ~ http://www.spry-soft.com/grids/
-    Based on 960 Grid System - http://960.gs/
-
-    Licensed under GPL and MIT.
-*/
-
-/*
-  Forces backgrounds to span full width,
-  even if there is horizontal scrolling.
-  Increase this if your layout is wider.
-
-  Note: IE6 works fine without this fix.
-*/
-
-body {
-  min-width: 792px;
-}
-
-/* Containers
-----------------------------------------------------------------------------------------------------*/
 .container_12 {
     margin-left: auto;
     margin-right: auto;
     width: 792px;
 }
-
-/* Grid >> Global
-----------------------------------------------------------------------------------------------------*/
-
-
 .grid_1,
 .grid_2,
 .grid_3,
@@ -1331,9 +1299,6 @@ body {
     margin-left: 0px;
     margin-right: 0px;
 }
-
-
-
 .push_1, .pull_1,
 .push_2, .pull_2,
 .push_3, .pull_3,
@@ -1348,23 +1313,12 @@ body {
 .push_12, .pull_12 {
     position:relative;
 }
-
-
-/* Grid >> Children (Alpha ~ First, Omega ~ Last)
-----------------------------------------------------------------------------------------------------*/
-
 .alpha {
     margin-left: 0;
 }
-
 .omega {
     margin-right: 0;
 }
-
-/* Grid >> 12 Columns
-----------------------------------------------------------------------------------------------------*/
-
-
 .container_12 .grid_1 {
     width:66px;
 }
@@ -1412,14 +1366,6 @@ body {
 .container_12 .grid_12 {
     width:792px;
 }
-
-
-
-
-/* Prefix Extra Space >> 12 Columns
-----------------------------------------------------------------------------------------------------*/
-
-
 .container_12 .prefix_1 {
     padding-left:66px;
 }
@@ -1463,13 +1409,6 @@ body {
 .container_12 .prefix_11 {
     padding-left:726px;
 }
-
-
-
-/* Suffix Extra Space >> 12 Columns
-----------------------------------------------------------------------------------------------------*/
-
-
 .container_12 .suffix_1 {
     padding-right:66px;
 }
@@ -1513,13 +1452,6 @@ body {
 .container_12 .suffix_11 {
     padding-right:726px;
 }
-
-
-
-/* Push Space >> 12 Columns
-----------------------------------------------------------------------------------------------------*/
-
-
 .container_12 .push_1 {
     left:66px;
 }
@@ -1563,13 +1495,6 @@ body {
 .container_12 .push_11 {
     left:726px;
 }
-
-
-
-/* Pull Space >> 12 Columns
-----------------------------------------------------------------------------------------------------*/
-
-
 .container_12 .pull_1 {
     left:-66px;
 }
@@ -1613,12 +1538,6 @@ body {
 .container_12 .pull_11 {
     left:-726px;
 }
-
-/* Clear Floated Elements
-----------------------------------------------------------------------------------------------------*/
-
-/* http://sonspring.com/journal/clearing-floats */
-
 .clear {
   clear: both;
   display: block;
@@ -1627,9 +1546,6 @@ body {
   width: 0;
   height: 0;
 }
-
-/* http://www.yuiblog.com/blog/2010/09/27/clearfix-reloaded-overflowhidden-demystified */
-
 .clearfix:before,
 .clearfix:after {
   content: '\0020';
@@ -1643,12 +1559,6 @@ body {
 .clearfix:after {
   clear: both;
 }
-
-/*
-  The following zoom:1 rule is specifically for IE6 + IE7.
-  Move to separate stylesheet if invalid CSS is a problem.
-*/
-
 .clearfix {
   zoom: 1;
 }

@@ -19,6 +19,7 @@ General Utility Functions
 
 	//Accepts Value, Decimal Place, and Whether '%' Should Be Appended or Not
 	var percentify 					= function (val, dec, str) {
+		var dec = dec || 0;
 		return (val === null) ? null : (str === true) ? ((val * 100).toFixed(dec) + "%") : (val * 100).toFixed(dec);
 	};
 
@@ -26,12 +27,8 @@ General Utility Functions
 	var commaNumbers 				= function (num) {
 		if (num === null) return null;
 	    var str = num.toString().split('.');
-	    if (str[0].length >= 4) {
-	        str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '1,');
-	    }; 
-	    if (str[1] && str[1].length >= 5) {
-	        str[1] = str[1].replace(/(\d{3})/g, '1 ');
-	    };
+		    if (str[0].length >= 4) str[0] = str[0].replace(/(\d)(?=(\d{3})+$)/g, '1,');
+		    if (str[1] && str[1].length >= 5) str[1] = str[1].replace(/(\d{3})/g, '1 ');
 	    return str.join('.');
 	};
 
@@ -145,6 +142,10 @@ Interactive Dashboard Viewmodel
 			dash.data;
 	};
 
+/*
+Some Macro Methods
+*/
+
 	//Initialize
 	Dashboard.prototype.init							= function () {
 		var dash = this;
@@ -156,17 +157,34 @@ Interactive Dashboard Viewmodel
 			});
 	};
 
+	//Sets Bookends & Renders Data Head + Modules, Then Fades to Second Screen
+	Dashboard.prototype.fadeScreens						= function () {
+		var dash = this;
+			dash.setBookends('25px ForalPro-Bold', 10);
+			dash.renderHead();
+			dash.renderRRModule();
+			dash.renderQAModule();
+			dash.renderARModule();
+			dash.renderRDModule();
+			$(dash.screenOne).fadeOut(function () {
+				$('body').scrollTop(0);
+				$(dash.screenTwo).fadeIn();
+				var height = $(dash.content).height();
+				$(dash.content).height(height - 380);
+			});
+	};
+
+/*
+And Micro Methods
+*/
+
 	//Loading Animation
-	Dashboard.prototype.loading 						= function (loading) {
+	Dashboard.prototype.loading 						= function () {
 		var dash = this;
 			$('.loading .rectangle').animate({width: 236}, 1000, function () {
 				$(this).animate({width: 0, left: 240}, 1000, function () {
 					$(this).css("left", "4px");
-					if (loading === false || typeof loading === 'undefined') {
-						return
-					} else {
-						dash.loading(true);
-					};
+					dash.loading();
 				});
 			});
 	};
@@ -174,7 +192,7 @@ Interactive Dashboard Viewmodel
 	//Loading Complete
 	Dashboard.prototype.loadingDone 					= function () {
 		var dash = this;
-			dash.loading(false);
+			dash.loading();
 			$('.loading').fadeOut(function() {
 				$('.datapoints').fadeIn();
 			});
@@ -223,7 +241,7 @@ Interactive Dashboard Viewmodel
 		$(e.currentTarget).removeClass('hover');
 	};
 
-	//Sets Vertical; If No Industries Sets Active Data Object Else Populates Industries Observable Array
+	//Sets Vertical; If No Industries Sets Active Data Object, Else Populates Industries Observable Array
 	Dashboard.prototype.selectVertical					= function (e) {
 		var dash = this, selectedVertical = e.currentTarget.value;
 			dash.activeVertical(selectedVertical || "Verticals");
@@ -252,7 +270,7 @@ Interactive Dashboard Viewmodel
 			$(dash.ddVerticals + ' ' + dash.ddArrow).addClass('selected');
 	};
 
-	//Set Industry (If Vertical Has Industries)
+	//Set Industry (Only Hit If Vertical Has Industries)
 	Dashboard.prototype.selectIndustry					= function (e) {
 		var dash = this, selectedIndustry = e.currentTarget.value;
 			dash.activeIndustry(selectedIndustry || "Industries");
@@ -266,23 +284,6 @@ Interactive Dashboard Viewmodel
 			dash.fadeScreens();
 	};
 
-	//Fade Screens - Sets Bookends & Renders Data Head + Modules
-	Dashboard.prototype.fadeScreens						= function () {
-		var dash = this;
-			dash.setBookends('25px ForalPro-Bold', 10);
-			dash.renderHead();
-			dash.renderRRModule();
-			dash.renderQAModule();
-			dash.renderARModule();
-			dash.renderRDModule();
-			$(dash.screenOne).fadeOut(function () {
-				$('body').scrollTop(0);
-				$(dash.screenTwo).fadeIn();
-				var height = $(dash.content).height();
-				$(dash.content).height(height - 380);
-			});
-	};
-
 	//Set Bookend Lengths
 	Dashboard.prototype.setBookends						= function (font, padding) {
 		var dash = this, books = $(dash.books), string = books.text();
@@ -294,6 +295,10 @@ Interactive Dashboard Viewmodel
 					bookend.width(parentWidth - padding - width);
 			});
 	};
+
+/*
+Module Specific Rendering Methods - Write Another For Another (New) Module
+*/
 
 	//Render Head Data
 	Dashboard.prototype.renderHead 						= function () {

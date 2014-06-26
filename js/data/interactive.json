@@ -1025,7 +1025,7 @@
                 "23": {
                     "name": "Alcoholic Beverages",
                     "url_nice_name": "alcoholic_beverages",
-                    "icon_name": "alcoholic_beverages",
+                    "icon_name": "manu_cpg",
                     "clients_included": 7,
                     "total_submitted": 1404,
                     "total_questions": null,
