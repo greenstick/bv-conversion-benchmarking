@@ -748,7 +748,7 @@ Screen Two
     position: absolute;
     top: 36px;
     left: 0px;
-    width: 756px;
+    width: 748px;
     font-family: 'Gibson-Light';
     font-size: 12px;
 }
@@ -798,27 +798,27 @@ Ratings & Reviews Module
 #ratingsReviews .overlay .viz .barTotals .barTotal {
     position: absolute;
     top: 0px;
-    width: 40px;
+    width: 50px;
     height: 20px;
     text-align: right;
 }
 #ratingsReviews .overlay .viz .barTotals .barTotal.aov.industry {
-    left: 72px;
+    left: 60px;
 }
 #ratingsReviews .overlay .viz .barTotals .barTotal.aov.all {
-    left: 130px;
+    left: 118px;
 }
 #ratingsReviews .overlay .viz .barTotals .barTotal.conversion.industry {
-    left: 312px;
+    left: 300px;
 }
 #ratingsReviews .overlay .viz .barTotals .barTotal.conversion.all {
-    left: 366px;
+    left: 354px;
 }
 #ratingsReviews .overlay .viz .barTotals .barTotal.rpv.industry {
-    left: 556px;
+    left: 544px;
 }
 #ratingsReviews .overlay .viz .barTotals .barTotal.rpv.all {
-    left: 608px;
+    left: 596px;
 }
 #ratingsReviews .overlay .viz .barLabelIndustry, #ratingsReviews .overlay .viz .barLabelAll {
     position: absolute;

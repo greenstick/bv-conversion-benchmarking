@@ -37,21 +37,29 @@ General Utility Functions
 		return l2 + (x - l1) * (h2 -l2) / (h1 - l1);
 	};
 
-	//Takes a Whole Number and Return Round Up
+	//Takes a Whole Number and Returns Rounded Up
 	var setRoundedMax 				= function (num) {
 		var length 	= num.toString().length,
 			integer = parseFloat(num).toFixed(0),
-			round 	= (length === 1) ? num : (length === 2) 
-					? Math.ceil(integer/10) * 10 : (length === 3) 
-					? Math.ceil(integer/100) * 100 : (length === 4) 
-					? Math.ceil(integer/1000) * 1000 : (length === 5)
-					? Math.ceil(integer/10000) * 10000 : (length === 6)
-					? Math.ceil(integer/100000) * 100000 : (length === 7)
-					? Math.ceil(integer/1000000) * 1000000 : (length === 8)
-					? Math.ceil(integer/10000000) * 10000000 : (length === 9)
-					? Math.ceil(integer/100000000) * 100000000 : (length === 10)
-					? Math.ceil(integer/1000000000) * 1000000000 : console.log('Error on setRoundedMax(): Value too large.'); 
+			mult 	= Math.pow(10, (length - 1)),
+			round 	= Math.ceil(integer / mult) * mult;
 		return round;
+	};
+
+	//Sets String to Camel Case
+	var toCamelCase 				= function (string) {
+		return string.toLowerCase().replace(/-(.)/g, function(match, first) {
+	        return first.toUpperCase();
+	    });
+	};
+
+	//Sorts Array of Objects Alphabetically by Specified Property
+	var sortArrayByObjectProperty 	= function (array, prop) {
+		array.sort(function (a, b) {
+			var textA = (a[prop]),
+				textB = (b[prop]);
+			return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+		});
 	};
 
 /*
@@ -225,10 +233,12 @@ And Micro Methods
 
 	//Load Vertical Dropdown
 	Dashboard.prototype.loadDropDown 					= function () {
-		var dash = this;
+		var dash = this, tempVertArr = [];
 			$.each(this.data.verticals, function (k, v) {
-				dash.ddVertArray.push(v);
+				tempVertArr.push(v);
 			});
+			sortArrayByObjectProperty(tempVertArr, 'name');
+			dash.ddVertArray(tempVertArr);
 	};
 
 	//Dropdown Hover State On
@@ -243,7 +253,7 @@ And Micro Methods
 
 	//Sets Vertical; If No Industries Sets Active Data Object, Else Populates Industries Observable Array
 	Dashboard.prototype.selectVertical					= function (e) {
-		var dash = this, selectedVertical = e.currentTarget.value;
+		var dash = this, selectedVertical = e.currentTarget.value, tempInduArr = [];
 			dash.activeVertical(selectedVertical || "Verticals");
 			$.each(dash.data.verticals, function (k, v) {
 				if (v.name === selectedVertical) {
@@ -258,7 +268,7 @@ And Micro Methods
 								dash.fadeScreens();
 							} else {
 								$.each(vl, function (key, value) {
-									dash.ddInduArray.push(value);
+									tempInduArr.push(value);
 								});
 								dash.verticalOnly(false);
 								$(dash.ddIndustries).removeClass('inactive');
@@ -267,6 +277,8 @@ And Micro Methods
 					});
 				};
 			});
+			sortArrayByObjectProperty(tempInduArr, 'name');
+			dash.ddInduArray(tempInduArr);
 			$(dash.ddVerticals + ' ' + dash.ddArrow).addClass('selected');
 	};
 
@@ -399,11 +411,11 @@ Event Bindings
 	//Dropdown Mouseover
 	$(dashboard.dd).on("mouseover", dashboard.ddVerticals + ', ' + dashboard.ddIndustries, function (e) {
 		dashboard.dropdownHoverOn(e);
-	})
+	});
 	//Dropdown Mouseover
 	$(dashboard.dd).on("mouseout", dashboard.ddVerticals + ', ' + dashboard.ddIndustries, function (e) {
 		dashboard.dropdownHoverOff(e);
-	})
+	});
 	//Select Vertical
 	$(dashboard.dd).on("click", dashboard.ddVerticals + ' ' + dashboard.filter, function (e) {
 		dashboard.selectVertical(e);

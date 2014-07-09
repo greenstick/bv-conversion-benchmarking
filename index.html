@@ -388,17 +388,17 @@
 									</div>
 									<div class="barTotals">
 										<!-- ko if: rrAovIndustry() !== null -->
-										<div class="barTotal aov industry" data-bind="text: rrAovIndustryPercent"></div>
+										<div class="barTotal aov industry" data-bind="text: '+' + rrAovIndustryPercent()"></div>
 										<!-- /ko -->
-										<div class="barTotal aov all" data-bind="text: rrAovAllPercent"></div>
+										<div class="barTotal aov all" data-bind="text: '+' + rrAovAllPercent()"></div>
 										<!-- ko if: rrConversionIndustry() !== null -->
-										<div class="barTotal conversion industry" data-bind="text: rrConversionIndustryPercent"></div>
+										<div class="barTotal conversion industry" data-bind="text: '+' + rrConversionIndustryPercent()"></div>
 										<!-- /ko -->
-										<div class="barTotal conversion all" data-bind="text: rrConversionAllPercent"></div>
+										<div class="barTotal conversion all" data-bind="text: '+' + rrConversionAllPercent()"></div>
 										<!-- ko if: rrRpvIndustry() !== null -->
-										<div class="barTotal rpv industry" data-bind="text: rrRpvIndustryPercent"></div>
+										<div class="barTotal rpv industry" data-bind="text: '+' + rrRpvIndustryPercent()"></div>
 										<!-- /ko -->
-										<div class="barTotal rpv all" data-bind="text: rrRpvAllPercent"></div>
+										<div class="barTotal rpv all" data-bind="text: '+' + rrRpvAllPercent()"></div>
 									</div>
 									<!-- ko if: showRRIndustryBars() === true -->
 									<div class="barLabelIndustry verticalText">
